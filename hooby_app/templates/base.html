@@ -1,0 +1,52 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title>Hobby_Lab</title>
+  {% endif %}
+
+  {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">             
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  {% endblock styles %}
+  </head>
+  <body>
+  {% include 'navbar.html' %}
+  <div id="wrapper-load">
+    <span><img src="https://i.pinimg.com/originals/8a/83/c8/8a83c8978f1b376321fde613d460e88d.gif" id="loader"></span>        
+  </div> 
+  
+  {% block content %}
+
+  {% endblock content %}
+  <hr>
+  <div class="footer jumbotron" style="background-image: linear-gradient(to right top, #000000, #1a0c13, #271423, #301b38, #322650, #343b6d, #2b518a, #0068a6, #008dc7, #00b4de, #00daeb, #00ffef);color:white">
+    <h4><i class="fas fa-hand-holding-heart"></i></h4>
+    <h5><b>Thank you for visiting Hobby_Lab. Connect with us via:</b></h5>
+    <a><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/?hl=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a><i class="fab fa-twitter-square"></i> <a href="https://twitter.com/login?lang=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a><i class="fas fa-phone-square-alt"></i> 0790476167</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a><i class="fas fa-envelope"></i> <a href="mailto: pyra_m.k@yahoo.com">pyra_m.k@yahoo.com</a></a>
+  </div>
+  </body>
+  
+  {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+    <script src="https://kit.fontawesome.com/8311960bd4.js" crossorigin="anonymous"></script>    
+    {% bootstrap_javascript %}
+    <script>
+      $(window).load(function() {        
+        $("#loader").hide();
+      });
+  </script>
+  {% endblock scripts %}
+</html>
