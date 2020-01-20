@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      
+    </div>
+    <div class="col-md-6">
+      {% block messages %}
+        {% if messages %}
+        <div>
+            <ul>
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong >{{message}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            {% endfor %}        
+            </ul>
+        </div>
+        {% endif %}
+      {% endblock %}
+
+      <div class="card bg-transparent">
+        <div class="card-header"><h2><b><u>Sign Up</u></b></h2></div>
+        <div class="card-body">
+          <form action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="form-group">
+              <input type='submit' class="btn btn-outline-info" value='Sign Up'>
+            </div>
+          <form>
+        </div>
+        <h5>If you have an account...</h5>
+        <a class='btn btn-outline-primary' href="/accounts/login/">Sign In</a>
+      </div>
+      </div>
+    <div class="col-md-3">  
+      
+    </div>
+  </div>
+</div>
+{% endblock content %}

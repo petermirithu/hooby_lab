@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">   
+      <div class="card bg-transparent">      
+        {% load account socialaccount %}
+        {% get_providers as socialaccount_providers %}      
+        {% for provider in socialaccount_providers %}
+          <h5><b><u>Sign Up with {{provider.name}}.Just click the button below:</u></b></h5>
+          <a title="{{provider.name}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i class="fa fa-{{provider.name}}" id="social_icon"></i><img src="https://s3.amazonaws.com/images.seroundtable.com/wrenches2-Google-1900px--1447075163.jpg" style="width:100px;border-radius:4px 4px 4px 4px"></a>
+        {% endfor %}
+      </div>      
+      <hr>
+      <h6>If you don't have an account .</h6><a class='btn btn-outline-primary' href="/accounts/register/">Sign Up</a>      
+    </div>
+    <div class="col-md-6">
+      {% block messages %}
+          {% if messages %}
+          <div>
+              <ul>
+              {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <strong >{{message}}</strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+              </div>
+              {% endfor %}        
+              </ul>
+          </div>
+          {% endif %}
+        {% endblock %}
+
+      <div class="card bg-transparent">
+        <div class="card-header"><h2><b><u>Sign In</u></b></h2></div>
+        <div class="card-body">
+          <form class="container-fluid text-center" id="login_form" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}  
+            {% bootstrap_form form %}
+
+            {% if redirect_field_value %}
+            
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            
+            {% endif %}
+            
+            <button  class="btn btn-outline-primary " type="submit">{% trans "Sign In" %}</button>  
+          </form>
+        </div>
+      </div>  
+      <hr>             
+    </div>    
+  </div>  
+</div>
+{% endblock %}
