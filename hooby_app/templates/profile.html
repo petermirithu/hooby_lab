@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+  {{block.super}}
+  <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1 class="text-center">{{user.username|title}}'s profile</h1>
+  <div class="row">
+    <div class="col-md-5">
+    {% if user.profile.profile_pic %}
+      <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
+    {% else %}
+      <img class="rounded-circle" src="https://images.unsplash.com/photo-1532703108233-69111d554cb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" width="300px" height="300px" alt="Profile photo">              
+    {% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if user.profile.status %}
+        <h6>Status: {{user.profile.status}}</h6>
+      {% else %}
+        <h6>Status: .....</h6>
+      {% endif %}
+    </div>
+    <div class="col-md-3">
+      <a href="{% url 'updateprofile' %}" class="btn btn-outline-info">Update profile</a>      
+    </div>
+  </div>
+</div>
+<hr>
+
+{% endblock content %}
