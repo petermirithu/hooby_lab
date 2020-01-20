@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+  {{block.super}}  
+  <link href="{% static 'css/forms.css' %}" rel='stylesheet'>
+{% endblock styles %}
+
+
+{% block content %}
+<div class="container">  
+  <div class="row">
+    <div class="col-md-3">      
+    </div>
+    <div class="col-md-6">
+      {% if form.errors %}
+      <p class="alert alert-danger">Something is wrong with the infomation you entered. Try again</p>
+      {% endif %}
+
+      <div class="card bg-transparent">
+        <div class="card-header"><h2><b><u>Update Profile</u></b></h2></div>
+        <div class="card-body">
+          <form action="{% url 'updateprofile' %}" method="post" enctype="mulitpart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form user_form %}
+            {% bootstrap_form profile_form %}            
+            <hr>            
+            <div class='form-group'>
+              <input type="submit" class="btn btn-outline-danger" value="Update">
+            </div>
+          </form>
+        </div> 
+      </div>
+    </div>
+    <div class="col-md-3">      
+    </div>
+  </div>
+</div>
+{% endblock content %}
