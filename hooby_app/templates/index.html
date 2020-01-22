@@ -2,16 +2,48 @@
 {% load static %}
 {% load bootstrap4 %}
 
-{% block content %}
-<div class="container">
-  <h1>Hobby Lab</h1>
-  <p>Your one stop app</p>
-  <hr>
-  <h5>Game lovers</h5>  
-  <a href="/home/game/" class="btn btn-danger">Tik Tak Toe</a>
+{% block styles %}
+  {{block.super}}  
+  <link href={% static 'css/home.css' %} rel="stylesheet">
+{% endblock styles %}
 
-  <h5>Music lovers</h5>
-  <a href="/search/music/" class="btn btn-info">Music</a>
+
+{% block content %}
+<div class="home_cont">
+  <div>
+    <h1>Hobby Lab</h1>
+    <p>Your one stop app</p>  
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Game lovers</h5>  
+      <div class="game_stuff">        
+        <img src="https://cdn.dribbble.com/users/994678/screenshots/3447660/ps-symbols.gif" width='30%' height="30%">
+        <a href="/home/game/" class="btn btn-danger">Tik Tak Toe</a>        
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h5>Music lovers</h5>
+      <a href="/search/music/">
+        <div class="music_stuff">        
+          <div class="row">
+            <div class="col-md-4">
+              <img src="https://service-excellence-expertise.com/nl/events/see2018/wp-content/uploads/sites/6/2018/07/seelogo-1-1.png"  style="margin-top:20px"width='80%' height="80%">
+            </div>
+            <div class="col-md-4">
+              <img src="https://thumbs.gfycat.com/MetallicGrizzledBarasinga-size_restricted.gif"  style="margin-top:20px"width='60%' height="60%">
+            </div>
+            <div class="col-md-4">
+              <img src="https://media1.tenor.com/images/93ad66075165597a05c16b4b6957dfea/tenor.gif?itemid=4715895"  style="margin-top:20px" width='80%' height="80%">
+            </div>
+          </div>
+        </div>      
+      </a>
+    </div>
+  </div>
+
 </div>
 
 {% endblock content %}
