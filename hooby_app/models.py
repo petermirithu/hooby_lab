@@ -26,4 +26,12 @@ class reviews(models.Model):
   def get_reviews(cls,music_id):
     reviews=cls.objects.filter(music_id__icontains=music_id)
     return reviews
-  
+
+class room(models.Model):
+  name=models.CharField(max_length=30)
+  description=models.CharField(max_length=1000)
+  slug=models.CharField(max_length=50)
+
+  def __str__(self):
+    return self.name
+
