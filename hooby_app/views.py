@@ -1,9 +1,14 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import profile
-from .forms import UserForm,ProfileForm
+from .models import profile,reviews
+from .forms import UserForm,ProfileForm,ReviewForm
+import requests
+from django.contrib import messages
+from .models import reviews
+from django.http.response import HttpResponse,json
 
 def home(request):
   '''
@@ -67,3 +72,64 @@ def update_profile(request):
     }  
     return render(request, 'updateprofile.html',context)
 
+@login_required()
+def fetch_music(request):    
+  if request.method=="POST":
+    term=request.POST.get('search_term')             
+    url = "https://deezerdevs-deezer.p.rapidapi.com/search"
+    querystring = {"q":term}
+    headers = {
+        'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
+        'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+        }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    html=response.json()
+
+    context={
+      'musics':html['data']
+    }    
+    return render(request, 'music.html',context)
+
+  else:    
+    url = "https://deezerdevs-deezer.p.rapidapi.com/search"
+    querystring = {"q":'hillsong'}
+    headers = {
+        'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
+        'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+        }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    html=response.json()    
+    context={
+      'musics':html['data']
+    }    
+    return render(request, 'music.html',context)
+
+@login_required()
+def single_music_item(request, music_id):    
+  url = "https://deezerdevs-deezer.p.rapidapi.com/track/{}".format(music_id)    
+  headers = {
+    'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
+    'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+    }
+  response = requests.request("GET", url, headers=headers)
+  # return JsonResponse(response.json(), safe=False)
+  html=response.json()    
+  music_reviews=reviews.get_reviews(music_id)
+  context={
+    'music':html,
+    'form':ReviewForm(),      
+    'reviews':music_reviews,
+  }    
+  return render(request, 'single_music.html',context)
+
+@login_required()
+def add_review(request):
+  if request.method=='POST':
+    form=ReviewForm(request.POST)
+    music_id_x=request.POST.get('music_id')
+    if form.is_valid():
+      form_x=form.save(commit=False)
+      form_x.posted_by=request.user
+      form_x.music_id=music_id_x
+      form_x.save()      
+      return redirect('single_music',music_id=music_id_x )
