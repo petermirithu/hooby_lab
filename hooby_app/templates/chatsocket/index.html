@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+  {{block.super}}
+  <link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
+  <link rel="stylesheet" href="{% static "css/room_detail.css" %}">
+{% endblock styles %}
+
+{% block content %}
+  <div class="container" style="padding-bottom:200px">    
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title">{{room.name}} Room "LIVE".</h1>
+        <p class="subtitle">
+          {{room.description}}
+        </p>
+        <div id="messages"></div>          
+      </div>
+      <div class="col-md-6">                  
+          <form id="message-form">
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea class="textarea" id="message-input"placeholder="Your message here" rows="3" autofocus></textarea>
+              </div>
+            </div>
+            <button type="submit" class="button">Send</button>
+          </form>          
+        </div>
+      </div>
+    </div>    
+  </div>  
+{% endblock content %}
+{% block scripts %}  
+  <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
+  <script src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    $(function() {      
+      let $chatWindow = $("#messages");
+      
+      let chatClient;
+      
+      let roomChannel;
+      
+      let username;
+      
+      function print(infoMessage, asHtml) {
+        let $msg = $('<div class="info">');
+        if (asHtml) {
+          $msg.html(infoMessage);
+        } else {
+          $msg.text(infoMessage);
+        }
+        $chatWindow.append($msg);
+      }
+    
+      function printMessage(fromUser, message) {
+        let $user = $('<span class="username">').text(fromUser + ":");
+        if (fromUser === username) {
+          $user.addClass("me");
+        }
+        let $message = $('<span class="message">').text(message);
+        let $container = $('<div class="message-container">');
+        $container.append($user).append($message);
+        $chatWindow.append($container);
+        $chatWindow.scrollTop($chatWindow[0].scrollHeight);
+      }
+              
+      $.getJSON(
+        "/token",
+        {
+          device: "browser"
+        },
+        function(data) {        
+          username = data.identity;
+          print(
+            "You logined as: " +
+              '<span class="me">' +
+              username +
+              "</span>",
+            true
+          );                  
+        //check chanel
+          Twilio.Chat.Client.create(data.token).then(client => {            
+            chatClient = client;            
+            chatClient.getSubscribedChannels().then(createOrJoinChannel);
+          });
+        }
+      );
+
+      function createOrJoinChannel() {      
+        let channelName = window.location.pathname.split("/").slice(-2, -1)[0];
+        print(`You joined the "${channelName}" chat channel...`);
+        chatClient
+          .getChannelByUniqueName(channelName)
+          .then(function(channel) {
+            roomChannel = channel;
+            setupChannel(channelName);
+          })
+          .catch(function() {          
+            chatClient
+              .createChannel({
+                uniqueName: channelName,
+                friendlyName: `${channelName} Chat Channel`
+              })
+              .then(function(channel) {
+                roomChannel = channel;
+                setupChannel(channelName);
+              });
+          });
+      }     
+
+      function setupChannel(name) {
+        roomChannel.join().then(function(channel) {
+          print(
+            `Joined channel ${name} as <span class="me"> ${username} </span>.`,
+            true
+          );
+          channel.getMessages(30).then(processPage);
+        });
+        
+        roomChannel.on("messageAdded", function(message) {
+          printMessage(message.author, message.body);
+        });
+      }
+
+      function processPage(page) {
+        page.items.forEach(message => {
+          printMessage(message.author, message.body);
+        });
+        if (page.hasNextPage) {
+          page.nextPage().then(processPage);
+        } else {
+          console.log("Done loading messages");
+        }
+      }
+
+      let $form = $("#message-form");
+      let $input = $("#message-input");
+      $form.on("submit", function(e) {
+        e.preventDefault();
+        if (roomChannel && $input.val().trim().length > 0) {
+          roomChannel.sendMessage($input.val());
+          $input.val("");
+        }
+      });
+    }); 
+
+  </script>
+
+{% endblock scripts %}
