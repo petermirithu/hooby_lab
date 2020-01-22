@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <h1>Music Lab</h1>
+  <p>Welcome</p>
+  <form action="{% url 'music' %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}    
+    <input type="text" name="search_term" placeholder="Search Music">    
+    <div class="form-group">
+      <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+  </form>  
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="card-columns">
+        {% for music in musics %}    
+          <div class="card">
+            <a href="/music/{{music.id}}">
+              <h6>Album</h6>
+              <img src={{music.album.cover_big}} width="30%" height="30%">          
+            </a>
+            <h5>{{music.title}}</h5>
+            <a href="{{music.link}}">View in the site</a>                 
+            <div>            
+              <audio controls>              
+                <source src="{{music.preview}}" type="audio/mp3">
+                Your browser does not support the audio element.
+              </audio>
+            </div>          
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
