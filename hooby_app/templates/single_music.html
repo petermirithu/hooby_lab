@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <h1>{{music.title}}</h1>  
+  <div class="row">    
+    <div class="col-md-6">
+      <h4>Artist</h4>
+      <img class="rounded-circle" src={{music.artist.picture_big}} width="50%" height="80%">
+      <h6>Name: {{music.artist.name}}</h6>
+    </div>      
+    <div class="col-md-6">
+      <h4>Album: {{music.album.title}}</h4>
+      <img class="rounded-circle" src={{music.album.cover_xl}} width="30%" height="50%">
+      <h6>Track position: {{music.track_position}}</h6>        
+      <h6>Rank: {{music.rank}}</h6>
+      <h6>Release Date: {{music.release_date}}</h6>
+      <h6>Duration: {{music.duration}} seconds</h6>
+    </div>    
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <h1>Reviews</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <form action="{% url 'add_review' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}    
+        {% bootstrap_form form %}
+        <input style="visibility:hidden" value="{{music.id}}" type="text" name="music_id">
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" value="Post">
+        </div>
+      </form>  
+    </div>
+    <div class="col-md-8">
+    {% if reviews %}
+      {% for review in reviews %}
+      <div class="card">
+        <h6>{{review.body}}</h6>
+        <p>{{review.posted_by}}</p>
+        <p>{{review.posted_on}}</p>
+      </div>
+      <hr>
+      {% endfor %}
+    {% else %}
+      <h6>No Reviews for this music.</h6> <h4><i class="fas fa-sad-tear"></i><h4>
+    {% endif %}
+    </div>
+  </div>
+</div>    
+{% endblock content %}
