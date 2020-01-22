@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div id="app">
+      <div class="container-fluid clearfix mb-3 shadow">
+        <img class="float-left my-3" style="border-radius:10px 10px 10px 10px" src="https://i.ytimg.com/vi/WTDQSS16RIU/maxresdefault.jpg" height="100px" width="100px"
+        />
+        <div class="float-right w-25 py-3">
+          <img class="my-3 mx-3 rounded-circle border" src="https://cdn.wallpapersafari.com/72/32/DA62TL.jpg"
+            height="62px" width="62px" />
+          <p class="d-inline">{% verbatim %} {{ username }} {% endverbatim %}</p>
+        </div>        
+      </div>
+      <div class="row mx-5" style="height: 50vh">
+        <div class="col-8 h-50 align-self-center">
+          <div class="row border rounded invisible h-50 w-75 m-auto" style="font-size: 3.6rem" ref="gameboard" @click="playerAction">
+            <div class="h-100 pr-2 col border border-dark" data-id="1" ref="1"></div>
+            <div class="col pr-2 border border-dark" data-id="2" ref="2"></div>
+            <div class="col pr-2 border border-dark" data-id="3" ref="3"></div>
+            <div class="w-100"></div>
+            <div class="h-100 pr-2 col border border-dark" data-id="4" ref="4"></div>
+            <div class="col pr-2 border border-dark" data-id="5" ref="5"></div>
+            <div class="col pr-2 border border-dark" data-id="6" ref="6"></div>
+            <div class="w-100"></div>
+            <div class="h-100 pr-2 col border border-dark" data-id="7" ref="7"></div>
+            <div class="col pr-2 border border-dark" data-id="8" ref="8"></div>
+            <div class="col pr-2 border border-dark" data-id="9" ref="9"></div>
+          </div>
+        </div>
+        <div class="col-4 pl-3">
+          <div class="row h-100">
+            <div class="col border h-75 text-center" style="background-color:lightgreen;">
+              <p class="my-3">{% verbatim %} {{ players }} {% endverbatim %} online player(s) </p>
+              <hr>
+              <li class="m-auto py-3 text-dark" style="cursor: pointer;" v-for="member in connectedPlayers" @click="choosePlayer">
+                {% verbatim %} {{ member }} {% endverbatim %}
+              </li>
+            </div>
+            <div class="w-100"></div>
+            <div class="col text-center py-3 border h-25" style="background-color: gray; font-size: 1em; font-weight: bold">
+              {% verbatim %} {{ status }} {% endverbatim %}
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
+    <script>
+
+      var app = new Vue({
+        el: '#app',
+
+        data: {
+          username: '',
+          players: 0,
+          connectedPlayers: [],
+          status: '',
+          pusher: new Pusher('5d68ac6ac406e5d01004', {
+            authEndpoint: '/pusher/auth/',
+            cluster: 'ap2',
+            encrypted: true
+          }),
+          otherPlayerName: '',
+          mychannel: {},
+          otherPlayerChannel: {},
+          firstPlayer: 0,
+          turn: 0,
+          boxes: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+
+        created () {
+          let url = new URL(window.location.href);
+          let name = url.searchParams.get("username");
+
+          if (name) {
+            this.username = name
+            this.subscribe();
+            this.listeners();
+          } else {
+            this.username = this.generateRandomName();
+            location.assign("/play?username=" + this.username);
+          }
+        },
+
+        //methods section
+        methods: {          
+          subscribe: function () {
+          let channel = this.pusher.subscribe('presence-channel');
+          this.myChannel = this.pusher.subscribe('private-' + this.username)
+
+          channel.bind('pusher:subscription_succeeded', (player) => {
+            this.players = player.count - 1
+            player.each((player) => {
+              if (player.id != this.username)
+                this.connectedPlayers.push(player.id)
+            });
+          });
+
+          channel.bind('pusher:member_added', (player) => {
+            this.players++;
+            this.connectedPlayers.push(player.id)
+          });
+
+          channel.bind('pusher:member_removed', (player) => {
+            this.players--;
+            var index = this.connectedPlayers.indexOf(player.id);
+            if (index > -1) {
+              this.connectedPlayers.splice(index, 1)
+            }
+          });
+        },
+
+//listeners
+        listeners: function () {
+          this.pusher.bind('client-' + this.username, (message) => {
+            if (confirm('Do you want to start a game of Tic Tac Toe with ' + message)) {
+              this.otherPlayerName = message
+              this.otherPlayerChannel = this.pusher.subscribe('private-' + this.otherPlayerName)
+              this.otherPlayerChannel.bind('pusher:subscription_succeeded', () => {
+                this.otherPlayerChannel.trigger('client-game-started', this.username)
+              })
+              this.startGame(message)
+            } else {
+              this.otherPlayerChannel = this.pusher.subscribe('private-' + message)
+              this.otherPlayerChannel.bind('pusher:subscription_succeeded', () => {
+                this.otherPlayerChannel.trigger('client-game-declined', "")
+              })
+              this.gameDeclined()
+            }
+          }),
+
+          this.myChannel.bind('client-game-started', (message) => {
+            this.status = "Game started with " + message
+            this.$refs.gameboard.classList.remove('invisible');
+            this.firstPlayer = 1;
+            this.turn = 1;
+          })
+
+          this.myChannel.bind('client-game-declined', () => {
+            this.status = "Game declined"
+          })
+
+          this.myChannel.bind('client-new-move', (position) => {
+            this.$refs[position].innerText = this.firstPlayer ? 'O' : 'X'
+          })
+
+          this.myChannel.bind('client-your-turn', () => {
+            this.turn = 1;
+          })
+
+          this.myChannel.bind('client-box-update', (update) => {
+            this.boxes = update;
+          })
+
+          this.myChannel.bind('client-you-lost', () => {
+            this.gameLost();
+          })
+        },
+
+         // Generates a random string we use as a name for a guest user
+        generateRandomName: function () {
+          let text = '';
+          let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          for (var i = 0; i < 6; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+          }
+          return text;
+        },
+
+        // Lets you choose a player to play as.
+        choosePlayer: function (e) {
+          this.otherPlayerName = e.target.innerText
+          this.otherPlayerChannel = this.pusher.subscribe('private-' + this.otherPlayerName)
+          this.otherPlayerChannel.bind('pusher:subscription_succeeded', () => {
+            this.otherPlayerChannel.trigger('client-' + this.otherPlayerName, this.username)
+          });
+        },
+
+        // Begins the game
+        startGame: function (name) {
+          this.status = "Game started with " + name
+          this.$refs.gameboard.classList.remove('invisible');
+        },
+
+        // User declined to play
+        gameDeclined: function () {
+          this.status = "Game declined"
+        },
+
+        // Game has ended with current user winning
+        gameWon: function () {
+          this.status = "You WON!"
+          this.record= url.searchParams.get("username");
+          this.$refs.gameboard.classList.add('invisible');
+          this.restartGame()
+        },
+
+        // Game has ended with current user losing
+        gameLost: function () {
+          this.turn = 1;
+          this.boxes = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+          this.status = "You LOST!"
+          this.$refs.gameboard.classList.add('invisible');
+          this.restartGame()
+        },
+
+        // Restarts a game
+        restartGame: function () {
+          for (i = 1; i < 10; i++) {
+            this.$refs[i].innerText = ""
+          }
+          this.$refs.gameboard.classList.remove('invisible');
+        },
+
+        // Checks tiles to see if the tiles passed are a match
+        compare: function () {
+          for (var i = 1; i < arguments.length; i++) {
+            if (arguments[i] === 0 || arguments[i] !== arguments[i - 1]) {
+              return false
+            }
+          }
+
+          return true;
+        },
+
+        // Checks the tiles and returns true if theres a winning play
+        theresAMatch: function () {
+          return this.compare(this.boxes[0], this.boxes[1], this.boxes[2]) ||
+            this.compare(this.boxes[3], this.boxes[4], this.boxes[5]) ||
+            this.compare(this.boxes[6], this.boxes[7], this.boxes[8]) ||
+            this.compare(this.boxes[0], this.boxes[3], this.boxes[6]) ||
+            this.compare(this.boxes[1], this.boxes[4], this.boxes[7]) ||
+            this.compare(this.boxes[2], this.boxes[5], this.boxes[8]) ||
+            this.compare(this.boxes[2], this.boxes[4], this.boxes[6]) ||
+            this.compare(this.boxes[0], this.boxes[4], this.boxes[8])
+        },
+
+        // Checks to see if the play was a winning play
+        playerAction: function (e) {
+          let index = e.target.dataset.id - 1
+          let tile = this.firstPlayer ? 'X' : 'O'
+
+          if (this.turn && this.boxes[index] == 0) {
+            this.turn = 0
+            this.boxes[index] = tile
+            e.target.innerText = tile
+
+            this.otherPlayerChannel.trigger('client-your-turn', "")
+            this.otherPlayerChannel.trigger('client-box-update', this.boxes)
+            this.otherPlayerChannel.trigger('client-new-move', e.target.dataset.id)
+
+            if (this.theresAMatch()) {
+              this.gameWon()
+              this.boxes = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+              this.otherPlayerChannel.trigger('client-you-lost', '')
+            }
+          }
+        },
+
+        }
+      });
+
+    </script>
+
+{% endblock content %}
