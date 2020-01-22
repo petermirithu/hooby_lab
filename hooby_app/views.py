@@ -3,12 +3,16 @@ from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import profile,reviews
+from .models import profile,reviews,room
 from .forms import UserForm,ProfileForm,ReviewForm
 import requests
 from django.contrib import messages
 from .models import reviews
 from django.http.response import HttpResponse,json
+from django.conf import settings
+from twilio.jwt.access_token import AccessToken
+from twilio.jwt.access_token.grants import ChatGrant
+
 
 def home(request):
   '''
@@ -133,3 +137,37 @@ def add_review(request):
       form_x.music_id=music_id_x
       form_x.save()      
       return redirect('single_music',music_id=music_id_x )
+
+# chat area
+@login_required()
+def start_chat(requests, slug):
+  room_x=room.objects.get(slug=slug)
+  context={
+    'room':room_x,
+  }
+  return render(requests, 'chatsocket/index.html',context)
+
+def token(request):
+    identity = request.user.username
+    device_id = request.GET.get('device', 'default') 
+
+    account_sid = settings.TWILIO_ACCOUNT_SID
+    api_key = settings.TWILIO_API_KEY
+    api_secret = settings.TWILIO_API_SECRET
+    chat_service_sid = settings.TWILIO_CHAT_SERVICE_SID
+
+    token = AccessToken(account_sid, api_key, api_secret, identity=identity)
+        
+    endpoint = "MyDjangoChatRoom:{0}:{1}".format(identity, device_id)
+
+    if chat_service_sid:
+        chat_grant = ChatGrant(endpoint_id=endpoint,service_sid=chat_service_sid)
+        token.add_grant(chat_grant)
+
+    response = {
+        'identity': identity,
+        'token': token.to_jwt().decode('utf-8')
+    }
+
+    return JsonResponse(response)
+    

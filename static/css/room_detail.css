@@ -1,0 +1,25 @@
+.info {
+  margin: 5px 0;
+  font-style: italic;
+}
+
+.message-container {
+  margin: 5px 0;
+}
+
+.message-container .username {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.me,
+.username.me {
+  font-weight: bold;
+  color: blue;
+}
+
+.message-container .username.me {
+  display: inline-block;
+  margin-right: 5px;
+}

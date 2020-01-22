@@ -2,29 +2,36 @@
 {% load static %}
 {% load bootstrap4 %}
 
+{% block styles %}
+  {{block.super}}
+  <link href="{% static 'css/music.css' %}" rel='stylesheet'>
+{% endblock styles %}
+  
 {% block content %}
-
-  <h1>Music Lab</h1>
-  <p>Welcome</p>
-  <form action="{% url 'music' %}" method='post' enctype="multipart/form-data">
-    {% csrf_token %}    
-    <input type="text" name="search_term" placeholder="Search Music">    
-    <div class="form-group">
-      <input type="submit" class="btn btn-success" value="Submit">
-    </div>
-  </form>  
-  <hr>
+  <div class="music_home">
+    <h1>Music Lab</h1>
+    <p>Welcome</p>    
+    <a class="btn btn-outline-warning" href="/start/chat/Music Chat/">Start_chat</a>
+    <br>    
+    <form action="{% url 'music' %}" method='post' enctype="multipart/form-data">
+      {% csrf_token %}    
+      <input type="text" name="search_term" placeholder="Search Music">    
+      <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Submit">
+      </div>
+    </form>      
+  </div>
   <div class="container">
-    <div class="row">
+    <div class="row" style="background-image: linear-gradient(to bottom, #ffb18f, #ffbbb4, #ffc9d4, #ffdaec, #fbebfa, #fbecfa, #fbeefb, #fbeffb, #ffe1f0, #ffd3dc, #ffc8c2, #ffbfa4);">
       <div class="card-columns">
         {% for music in musics %}    
           <div class="card">
-            <a href="/music/{{music.id}}">
-              <h6>Album</h6>
-              <img src={{music.album.cover_big}} width="30%" height="30%">          
+            <a  href="/music/{{music.id}}">              
+              <div><img src={{music.album.cover_big}} style="border-radius:10px 0px 10px 0px"width="30%" height="30%">          
+              <h6>{{music.title}}</h6></div>
             </a>
-            <h5>{{music.title}}</h5>
-            <a href="{{music.link}}">View in the site</a>                 
+            <hr>
+            <a style="color:green" href="{{music.link}}">View in the site</a>                 
             <div>            
               <audio controls>              
                 <source src="{{music.preview}}" type="audio/mp3">
