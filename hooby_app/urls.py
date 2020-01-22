@@ -16,5 +16,8 @@ urlpatterns = [
     url(r'^search/music/$',views.fetch_music,name="music"),
     path('music/<str:music_id>/',views.single_music_item,name="single_music"),
     url(r'^add/review/$',views.add_review,name='add_review'),
+    # chat area
+    path('start/chat/<str:slug>/',views.start_chat,name='start_chat'),
+    url(r'token$', views.token, name="token"),        
 
 ]
