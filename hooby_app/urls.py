@@ -12,6 +12,9 @@ urlpatterns = [
     # game
     url(r'^home/game/$',gameapp.index,name="game_home"),
     url(r'^play/$',gameapp.play,name="play"),
-    url(r'^pusher/auth/$',gameapp.pusher_authentication,name="push_auth"),
+    path('pusher/auth/',gameapp.pusher_authentication,name="push_auth"),
+    url(r'^search/music/$',views.fetch_music,name="music"),
+    path('music/<str:music_id>/',views.single_music_item,name="single_music"),
+    url(r'^add/review/$',views.add_review,name='add_review'),
 
 ]
