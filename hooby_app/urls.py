@@ -20,4 +20,5 @@ urlpatterns = [
     path('start/chat/<str:slug>/',views.start_chat,name='start_chat'),
     url(r'token$', views.token, name="token"),        
 
+
 ]
