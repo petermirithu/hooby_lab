@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="h3 mb-3 font-weight-normal text-center">TIC-TAC-TOE</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">        
+        <img class="mb-4" style="border-radius:10px 10px 10px 10px" src="https://media0.giphy.com/media/YrNE3JZ8rI7TP7Hw0d/giphy.webp?cid=790b7611eff6304e2116071a2e00b27d0dd10f78f5ba8ede&rid=giphy.webp" alt="" width="250px" height="250px">        
+      </div>
+      <div class="col-md-6">
+        <div id="app">
+          <form class="form-signin">                                  
+            <p>PUT IN YOUR DETAILS TO PLAY</p>
+            {% csrf_token %}
+            <div class="form-label-group">
+                <label for="inputUsername">Stage name</label>
+                <input type="name" id="inputUsername" ref="username" class="form-control" placeholder="Enter a stage name." required="" autofocus="">
+            </div>            
+            <hr>
+            <button class="btn btn-lg btn-outline-primary btn-block" type="submit" @click.prevent="login">Connect</button>
+            <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
+          </form>
+        </div>
+      </div>      
+    </div>
+  </div>    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        login: function () {
+          let username = this.$refs.username.value          
+          window.location.replace(`/play?username=${username}`);          
+        }
+      }
+    })
+    </script>
+{% endblock content %}
