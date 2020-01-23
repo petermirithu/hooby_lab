@@ -25,7 +25,8 @@ def index(request):
 def play(request):
   global name
   name=request.user.username  
-  return render(request,'game/play.html')
+  title='Tik Tak Toe'
+  return render(request,'game/play.html',{'title':title})
 
 @login_required()
 @csrf_exempt

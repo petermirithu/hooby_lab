@@ -120,10 +120,12 @@ def single_music_item(request, music_id):
   response = requests.request("GET", url, headers=headers)  
   html=response.json()    
   music_reviews=reviews.get_reviews(music_id)
+  title=html['title']
   context={
     'music':html,
     'form':ReviewForm(),      
     'reviews':music_reviews,
+    'title':title,
   }    
   return render(request, 'single_music.html',context)
 
