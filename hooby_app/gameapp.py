@@ -4,6 +4,7 @@ import json
 import pusher
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 pusher = pusher_client = pusher.Pusher(
   app_id='934602',
@@ -14,15 +15,19 @@ pusher = pusher_client = pusher.Pusher(
 )
 name=''
 
+@login_required()
 def index(request):
 
   return render(request, 'game/index.html')
+
+@login_required()  
 @csrf_exempt
 def play(request):
   global name
   name=request.user.username  
   return render(request,'game/play.html')
 
+@login_required()
 @csrf_exempt
 def pusher_authentication(request):
   auth=pusher.authenticate(

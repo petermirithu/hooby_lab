@@ -150,6 +150,7 @@ def start_chat(requests, slug):
   }
   return render(requests, 'chatsocket/index.html',context)
 
+@login_required()
 def token(request):
     identity = request.user.username
     device_id = request.GET.get('device', 'default') 
