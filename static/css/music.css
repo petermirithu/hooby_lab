@@ -26,6 +26,7 @@ h1{
   box-shadow: 6px 6px black;  
   transition: all .5s ease-Out;
 }
+
 #wrapper-load{
   display:none;
 }
