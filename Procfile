@@ -1,1 +1,1 @@
-web: gunicorn my_hoody.wsgi --log-file -
+web: gunicorn hooby_lab.wsgi --log-file -
