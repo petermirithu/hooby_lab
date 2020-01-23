@@ -1,3 +1,12 @@
+body{  
+  background-image: linear-gradient(to right top, #e7e6f6, #e4e5f5, #e2e4f4, #dfe3f3, #dce2f2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-attachment: fixed;  
+  width: 100%;    
+  font-family: 'Inria Serif', serif;
+}
 .info {
   margin: 5px 0;
   font-style: italic;
@@ -16,10 +25,17 @@
 .me,
 .username.me {
   font-weight: bold;
-  color: blue;
+  color: blue;  
 }
 
 .message-container .username.me {
   display: inline-block;
-  margin-right: 5px;
+  margin-right: 5px;  
+
+}
+.chat_nav{
+  display: none;
+}
+h1{
+  font-family: 'Shrikhand', cursive;
 }

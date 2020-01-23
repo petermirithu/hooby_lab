@@ -4,6 +4,7 @@
 
 {% block styles %}
   {{block.super}}
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
   <link href="{% static 'css/profile.css' %}" rel="stylesheet">
 {% endblock styles %}
 
@@ -15,7 +16,7 @@
     {% if user.profile.profile_pic %}
       <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
     {% else %}
-      <img class="rounded-circle" src="https://images.unsplash.com/photo-1532703108233-69111d554cb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" width="300px" height="300px" alt="Profile photo">              
+      <img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
     {% endif %}
     </div>
     <div class="col-md-4">

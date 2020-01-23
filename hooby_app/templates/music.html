@@ -4,33 +4,49 @@
 
 {% block styles %}
   {{block.super}}
+  <link href="https://fonts.googleapis.com/css?family=Shojumaru&display=swap" rel="stylesheet">
   <link href="{% static 'css/music.css' %}" rel='stylesheet'>
 {% endblock styles %}
   
 {% block content %}
-  <div class="music_home">
+  <div class="music_home">    
     <h1>Music Lab</h1>
-    <p>Welcome</p>    
-    <a class="btn btn-outline-warning" href="/start/chat/Music Chat/">Start_chat</a>
-    <br>    
-    <form action="{% url 'music' %}" method='post' enctype="multipart/form-data">
-      {% csrf_token %}    
-      <input type="text" name="search_term" placeholder="Search Music">    
-      <div class="form-group">
-        <input type="submit" class="btn btn-success" value="Submit">
+    <p>Welcome</p>            
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Music Chat Room "LIVE"</h3>
+      <a style="margin-top:1%" class="btn btn-danger" href="/start/chat/Music Chat/">Join room</a>            
+      </div>      
+      <div class="col-md-6">
+        <h3>Search Music</h3>
+        <form style="margin-top:1%" action="{% url 'music' %}" method='post' enctype="multipart/form-data">
+          {% csrf_token %}    
+          <input type="text" name="search_term" placeholder="Search Music">          
+          <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Submit">
+          </div>
+        </form>      
       </div>
-    </form>      
+    </div>
   </div>
   <div class="container">
+    <h2 class="text-center">{{title|title}}</h2>
     <div class="row" style="background-image: linear-gradient(to bottom, #ffb18f, #ffbbb4, #ffc9d4, #ffdaec, #fbebfa, #fbecfa, #fbeefb, #fbeffb, #ffe1f0, #ffd3dc, #ffc8c2, #ffbfa4);">
       <div class="card-columns">
         {% for music in musics %}    
           <div class="card">
-            <a  href="/music/{{music.id}}">              
-              <div><img src={{music.album.cover_big}} style="border-radius:10px 0px 10px 0px"width="30%" height="30%">          
-              <h6>{{music.title}}</h6></div>
-            </a>
+            <div class="row">
+              <div class="col-md-6">
+                <a  href="/music/{{music.id}}">              
+                  <h6 >{{music.title}}</h6> 
+                  <p><small>By: {{music.artist.name}}</small></p>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <img src={{music.album.cover_big}} style="float:right;border-radius:10px 0px 10px 0px"width="100%" height="100%">          
+              </div>
             <hr>
+            </div>
             <a style="color:green" href="{{music.link}}">View in the site</a>                 
             <div>            
               <audio controls>              

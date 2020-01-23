@@ -3,8 +3,10 @@
 {% load bootstrap4 %}
 
 {% block content %}
+<link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
+
 <div class="container">
-  <h1>{{music.title}}</h1>  
+  <h1 style="font-family: 'Shrikhand', cursive;">{{music.title}}</h1>  
   <div class="row">    
     <div class="col-md-6">      
       <img class="rounded-circle" src={{music.artist.picture_big}} width="50%" height="80%">
@@ -25,7 +27,7 @@
   <hr>
 </div>
 <div class="container">
-  <h1>Reviews</h1>
+  <h1 style="font-family: 'Shrikhand', cursive;">Reviews</h1>
   <div class="row">
     <div class="col-md-4">
       <form action="{% url 'add_review' %}" method='post' enctype="multipart/form-data">
@@ -40,11 +42,15 @@
     <div class="col-md-8">
     {% if reviews %}
       {% for review in reviews %}
-      <div class="card">
-        <h6>{{review.body}}</h6>
-        <p>{{review.posted_by}}</p>
-        <p>{{review.posted_on}}</p>
-      </div>
+        <div class="card" style="width:650px">     
+          {% if review.posted_by.profile.profile_pic %}
+            <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="{{review.posted_by.profile.profile_pic}}" width="40px" heigth="40px"><b>{{review.posted_by}}</b></a> {{review.body}}</p>
+            <p>{{review.posted_on|timesince}}</p>                                                  
+          {% else %}
+            <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="40px" heigth="40px"><b>{{review.posted_by}}</b></a> {{review.body}}</p>
+            <p>{{review.posted_on|timesince}}</p>    
+          {% endif %}             
+        </div>        
       <hr>
       {% endfor %}
     {% else %}

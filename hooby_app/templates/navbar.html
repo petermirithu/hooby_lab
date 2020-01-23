@@ -1,13 +1,15 @@
 {% load static %}
 {% load bootstrap4 %}            
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"> 
+<link href="https://fonts.googleapis.com/css?family=Shojumaru&display=swap" rel="stylesheet">
+
 
 <nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:black">
   <button style="background-color:white" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   
-  <a style="color:lightblue" class="navbar-brand" href="{% url 'home' %}">Hobby_Lab</a>
+  <a style="color:lightblue;font-family: 'Shojumaru', cursive;" class="navbar-brand" href="{% url 'home' %}">Hobby_Lab</a>
   
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">  
 
@@ -21,7 +23,7 @@
         {% if user.profile.profile_pic %}
           <img class="rounded-circle chat_nav"src="{{user.profile.profile_pic.cdn_url}}" width="40px" height="40px"alt="Profile photo">                              
         {% else %}
-          <img class="rounded-circle chat_nav"src="https://images.unsplash.com/photo-1532703108233-69111d554cb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" width="40px" height="40px" alt="Profile photo">
+          <img class="rounded-circle chat_nav"src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" style="background-color:lightblue" width="40px" height="40px" alt="Profile photo">
         {% endif %}    
         <a  style="color:azure" class="nav-link" href="/accounts/profile/"><i class="fas fa-user"></i>Profile</a>      
         <a  style="color:azure" class="nav-link" href="/logout/"><i class="fas fa-sign-in-alt"></i>Sign Out</a>              

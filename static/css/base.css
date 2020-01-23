@@ -5,3 +5,6 @@
   position: fixed;
   z-index: 100;
 }
+body{
+  font-family: 'Inria Serif', serif;
+}
