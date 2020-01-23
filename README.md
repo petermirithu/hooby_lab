@@ -1,10 +1,10 @@
-# [Hobby_Lab]()
+# [Hobby_Lab](https://hobbylab254.herokuapp.com/)
 
 This project was generated with [Django](https://www.djangoproject.com) version 2.2.8 <br>
 
 ![picture](hobby_lab.png)
 
-To view the site Click [Hobby_Lab.com]()
+To view the site Click [Hobby_Lab.com](https://hobbylab254.herokuapp.com/)
 
 ## Author: 
   * [Peter Mirithu](https://github.com/petermirithu/hooby_lab)
@@ -87,7 +87,7 @@ To view the site Click [Hobby_Lab.com]()
  ## License
   This project is licensed by [MIT License](LICENSE.txt)<br>
                 Copyright (c) <br>
-                [Peter Mirithu](https://github.com/petermirithu/Grant_py) <br>
+                [Peter Mirithu](https://github.com/petermirithu/hooby_lab/) <br>
                   2020<br>
   
   
