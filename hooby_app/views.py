@@ -79,18 +79,18 @@ def update_profile(request):
 @login_required()
 def fetch_music(request):    
   if request.method=="POST":
-    term=request.POST.get('search_term')             
-    url = "https://deezerdevs-deezer.p.rapidapi.com/search"
-    querystring = {"q":term}
+    term=request.POST.get('search_term')       
+    url='https://api.deezer.com/search?q={}'.format(term)    
     headers = {
         'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-        'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+        'x-rapidapi-key':settings.RAPID_API_KEY
         }
-    response = requests.request("GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, headers=headers, params=term)
     html=response.json()
-
+    title=term
     context={
-      'musics':html['data']
+      'musics':html['data'],
+      'title':title,
     }    
     return render(request, 'music.html',context)
 
@@ -99,12 +99,14 @@ def fetch_music(request):
     querystring = {"q":'hillsong'}
     headers = {
         'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-        'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+        'x-rapidapi-key':settings.RAPID_API_KEY
         }
     response = requests.request("GET", url, headers=headers, params=querystring)
     html=response.json()    
+    title=querystring
     context={
-      'musics':html['data']
+      'musics':html['data'],
+      'title':title['q']
     }    
     return render(request, 'music.html',context)
 
@@ -113,10 +115,9 @@ def single_music_item(request, music_id):
   url = "https://deezerdevs-deezer.p.rapidapi.com/track/{}".format(music_id)    
   headers = {
     'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-    'x-rapidapi-key': "e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
+    'x-rapidapi-key':settings.RAPID_API_KEY
     }
-  response = requests.request("GET", url, headers=headers)
-  # return JsonResponse(response.json(), safe=False)
+  response = requests.request("GET", url, headers=headers)  
   html=response.json()    
   music_reviews=reviews.get_reviews(music_id)
   context={
@@ -142,8 +143,10 @@ def add_review(request):
 @login_required()
 def start_chat(requests, slug):
   room_x=room.objects.get(slug=slug)
+  title=slug
   context={
     'room':room_x,
+    'title':title
   }
   return render(requests, 'chatsocket/index.html',context)
 

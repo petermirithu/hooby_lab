@@ -173,4 +173,6 @@ TWILIO_API_KEY = config('TWILIO_API_KEY', None)
 TWILIO_API_SECRET = config('TWILIO_API_SECRET', None)
 TWILIO_CHAT_SERVICE_SID = config('TWILIO_CHAT_SERVICE_SID', None)
 
+RAPID_API_KEY=config('RAPID_API_KEY')
+
 django_heroku.settings(locals())
