@@ -13,36 +13,42 @@
 
   {% block styles %}
     {% bootstrap_css %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">             
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">                 
+    <link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Inria+Serif&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
   {% endblock styles %}
   </head>
   <body>
   {% include 'navbar.html' %}
-  {% comment %} <div id="wrapper-load">
+  <div id="wrapper-load">
     <span><img src="https://i.pinimg.com/originals/8a/83/c8/8a83c8978f1b376321fde613d460e88d.gif" id="loader"></span>        
-  </div>  {% endcomment %}
+  </div> 
   
   {% block content %}
 
   {% endblock content %}
-  <hr>
-  <div class="footer jumbotron" style="background-color:black;color:azure">
-    <h4><i class="fas fa-hand-holding-heart"></i></h4>
-    <h5><b>Thank you for visiting Hobby_Lab. Connect with us via:</b></h5>
-    <a><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/?hl=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a><i class="fab fa-twitter-square"></i> <a href="https://twitter.com/login?lang=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a><i class="fas fa-phone-square-alt"></i> 0790476167</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a><i class="fas fa-envelope"></i> <a href="mailto: pyra_m.k@yahoo.com">pyra_m.k@yahoo.com</a></a>
-  </div>
+  <hr>  
+  <footer class="page-footer font-small special-color-dark pt-4" style="color:azure;background-image: linear-gradient(to bottom, #000000, #030102, #050303, #080405, #0b0606, #110d0d, #151313, #191717, #211f1f, #282728, #303030, #393939);">  
+    <div class="container">  
+      <a><img src="http://pngimg.com/uploads/twitter/twitter_PNG32.png" class="rounded-circle" width="40px" height="40px"><a href="https://www.instagram.com/?hl=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a><img src="https://clipartart.com/images/clipart-logo-instagram-1.jpg" class="rounded-circle" width="40px" height="40px"><a href="https://twitter.com/login?lang=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a><img src="https://androidapksfree.com/wp-content/uploads/2014/11/Facebook-fb-APK.png" class="rounded-circle" width="40px" height="40px"><a href="https://www.facebook.com/">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxo4MPrnqf0zSnoGUBpKXw_ax_GuX8zjOXCVUcL_SE-RfQKcDB&s" class="rounded-circle" width="40px" height="40px"> 0790476167</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" class="rounded-circle" width="40px" height="40px"><a href="mailto: pyra_m.k@yahoo.com">pyra_m.k@yahoo.com</a></a>            
+    </div>     
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="/"> Hobby_Lab.com</a>
+    </div>
+    </footer>
   </body>
   
   {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     <script src="https://kit.fontawesome.com/8311960bd4.js" crossorigin="anonymous"></script>    
-    {% bootstrap_javascript %}
+    {% bootstrap_javascript %}    
+    <script src="js/wow.min.js"></script>    
     <script>
       $(window).load(function() {        
         $("#loader").hide();

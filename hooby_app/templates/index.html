@@ -4,15 +4,17 @@
 
 {% block styles %}
   {{block.super}}  
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">  
   <link href={% static 'css/home.css' %} rel="stylesheet">
 {% endblock styles %}
 
 
 {% block content %}
 <div class="home_cont">
-  <div>
-    <h1>Hobby Lab</h1>
-    <p>Your one stop app</p>  
+  <div class="content_home">
+    <p>Hobby Lab</p>
+    <h4 style="color:black">A hobby a day keeps the doldrums away.</h4>  
   </div>
 </div>
 <div class="container">
@@ -24,7 +26,7 @@
         <a href="/home/game/" class="btn btn-danger">Tik Tak Toe</a>        
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6">    
       <h5>Music lovers</h5>
       <a href="/search/music/">
         <div class="music_stuff">        
@@ -47,3 +49,4 @@
 </div>
 
 {% endblock content %}
+
