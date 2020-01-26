@@ -1,11 +1,14 @@
 .home_cont{
-  background-image: url('https://images.unsplash.com/photo-1561722798-9a732d141027?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
+  /* background-image: url('https://images.unsplash.com/photo-1508240155128-3b7b40767aa1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'); */
+  background-image: url('https://images.unsplash.com/photo-1562696232-c59a1aee6b0f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
   background-attachment: fixed;  
   width: 100%;  
-  height: 95vh;    
+  /* background-color: rgb(240, 112, 112); */
+  /* background-blend-mode: screen; */  
+  height: 95vh;      
 }
 .music_stuff{
   background-image: url('https://s3.amazonaws.com/tasmeemme.project.mi.thumbnails/resize_805x9000/310/272310.jpg');
@@ -41,4 +44,39 @@
 h5{
   font-family: 'Bungee Inline', cursive;
   font-size: 30px;
+  margin-top: 20px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+.home_cont p {
+	background-image: url('https://i.pinimg.com/originals/f6/26/68/f62668aac2142589f49ef247058f0172.gif');
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 120px;
+	line-height: .75;
+	margin: 10px 0;
+}
+/* home message */
+.message {
+  display: inline-block;
+  line-height: 1.2;
+  transition: line-height .2s, width .2s;
+  overflow: hidden;
+}
+
+.message,
+.hidden {
+  font-family: 'Roboto Slab', serif;
+  font-size: 20%;
+  font-weight: bolder;
+}
+
+.hidden {
+  color: #FFF;
+  visibility: hidden;
+}
+
+

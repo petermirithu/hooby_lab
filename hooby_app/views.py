@@ -9,7 +9,6 @@ import requests
 from django.contrib import messages
 from .models import reviews
 from django.http.response import HttpResponse,json
-from django.conf import settings
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
 
@@ -83,7 +82,7 @@ def fetch_music(request):
     url='https://api.deezer.com/search?q={}'.format(term)    
     headers = {
         'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-        'x-rapidapi-key':settings.RAPID_API_KEY
+        'x-rapidapi-key':"e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
         }
     response = requests.request("GET", url, headers=headers, params=term)
     html=response.json()
@@ -99,7 +98,7 @@ def fetch_music(request):
     querystring = {"q":'hillsong'}
     headers = {
         'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-        'x-rapidapi-key':settings.RAPID_API_KEY
+        'x-rapidapi-key':"e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
         }
     response = requests.request("GET", url, headers=headers, params=querystring)
     html=response.json()    
@@ -115,15 +114,17 @@ def single_music_item(request, music_id):
   url = "https://deezerdevs-deezer.p.rapidapi.com/track/{}".format(music_id)    
   headers = {
     'x-rapidapi-host': "deezerdevs-deezer.p.rapidapi.com",
-    'x-rapidapi-key':settings.RAPID_API_KEY
+    'x-rapidapi-key':"e628a84480msh32cd6fd8e2cfc83p162b72jsnc60479d7fd08"
     }
   response = requests.request("GET", url, headers=headers)  
   html=response.json()    
   music_reviews=reviews.get_reviews(music_id)
+  title=html['title']
   context={
     'music':html,
     'form':ReviewForm(),      
     'reviews':music_reviews,
+    'title':title,
   }    
   return render(request, 'single_music.html',context)
 
@@ -155,10 +156,10 @@ def token(request):
     identity = request.user.username
     device_id = request.GET.get('device', 'default') 
 
-    account_sid = settings.TWILIO_ACCOUNT_SID
-    api_key = settings.TWILIO_API_KEY
-    api_secret = settings.TWILIO_API_SECRET
-    chat_service_sid = settings.TWILIO_CHAT_SERVICE_SID
+    account_sid='AC9aad7718f64dfb7e31c8dabb56c1e308'
+    api_key='SKb5e2d2a54657675a6d11c483bb5ca90a'
+    api_secret='6Mlikb507Fb6STGFrkyKUAb0BjuWaMl3'
+    chat_service_sid='ISa9d87f39b3c14f75b2a40a805e70cd5f'
 
     token = AccessToken(account_sid, api_key, api_secret, identity=identity)
         

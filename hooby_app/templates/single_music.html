@@ -6,13 +6,13 @@
 <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
 
 <div class="container">
-  <h1 style="font-family: 'Shrikhand', cursive;">{{music.title}}</h1>  
+  <h1 style="font-family: 'Shrikhand', cursive;padding-top:20px">{{music.title}}</h1>  
   <div class="row">    
     <div class="col-md-6">      
       <img class="rounded-circle" src={{music.artist.picture_big}} width="50%" height="80%">
       <h4>Artist: {{music.artist.name}}</h4>
     </div>      
-    <div class="col-md-6" style="background-image:url('{{music.album.cover_xl}}'); z-index: -1;background-color: hsla(0,0%,100%,0.70);background-blend-mode: overlay;">      
+    <div class="col-md-6" style="padding-top:20px;background-image:url('{{music.album.cover_xl}}'); z-index: -1;background-color: hsla(0,0%,100%,0.70);background-blend-mode: overlay;">      
         <h4><b>Album: {{music.album.title}}</b></h4>
         <br>
         <h6><b>Track position: {{music.track_position}}</b></h6>

@@ -2,7 +2,7 @@
 
 This project was generated with [Django](https://www.djangoproject.com) version 2.2.8 <br>
 
-![picture](hobby_lab.png)
+![picture](hobbylab.png)
 
 To view the site Click [Hobby_Lab.com]()
 

@@ -12,8 +12,7 @@
   {% endif %}
 
   {% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">                 
+    {% bootstrap_css %}    
     <link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Inria+Serif&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
@@ -23,7 +22,7 @@
   {% include 'navbar.html' %}
   <div id="wrapper-load">
     <span><img src="https://i.pinimg.com/originals/8a/83/c8/8a83c8978f1b376321fde613d460e88d.gif" id="loader"></span>        
-  </div> 
+  </div>
   
   {% block content %}
 
@@ -47,8 +46,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     <script src="https://kit.fontawesome.com/8311960bd4.js" crossorigin="anonymous"></script>    
-    {% bootstrap_javascript %}    
-    <script src="js/wow.min.js"></script>    
+    {% bootstrap_javascript %}        
     <script>
       $(window).load(function() {        
         $("#loader").hide();

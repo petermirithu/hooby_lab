@@ -13,7 +13,7 @@
   <div class="container" style="padding-bottom:200px;">    
     <div class="row">
       <div class="col-md-6" style="overflow:scroll; height:500px;width:250px">
-        <h1 class="title">{{room.name}} Room "LIVE".</h1>
+        <h1 style="margin-top:20px" class="title">{{room.name}} Room "LIVE".</h1>
         <p class="subtitle">
           {{room.description}}
         </p>
@@ -34,7 +34,8 @@
     </div>    
   </div>  
 {% endblock content %}
-{% block scripts %}  
+{% block scripts %}    
+  {{block.super}}
   <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

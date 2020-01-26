@@ -34,7 +34,7 @@
     <div class="row" style="background-image: linear-gradient(to bottom, #ffb18f, #ffbbb4, #ffc9d4, #ffdaec, #fbebfa, #fbecfa, #fbeefb, #fbeffb, #ffe1f0, #ffd3dc, #ffc8c2, #ffbfa4);">
       <div class="card-columns">
         {% for music in musics %}    
-          <div class="card">
+          <div style="padding:10px"class="card">
             <div class="row">
               <div class="col-md-6">
                 <a  href="/music/{{music.id}}">              
@@ -60,3 +60,8 @@
     </div>
   </div>
 {% endblock content %}
+
+{% block scripts %}
+  {{block.super}}  
+{% endblock scripts %}
+
