@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+  {{block.super}}    
+  <link href="{% static 'css/read.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+
+{% block content %}
+  
+		<!-- Banner -->
+    <section class="banner full">          
+        <article>
+            <img src="https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+            <div class="inner">
+              <header>
+                <p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
+                <h2>Read Hub</h2>
+              </header>
+            </div>
+        </article>
+    </section>
+
+  <!-- Two -->
+    <section id="two" class="wrapper style3">
+      <div class="inner">
+        <header class="align-center">
+          <p>The top platforms for reading web fiction and light novels for free. English originals and translated.</p>
+          <h2>Checkout a few of the Sites below.</h2>
+        </header>
+      </div>
+    </section>    
+
+    <section>
+      <div class="wrap">
+        <div class="box one">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>Royal Road</h1>
+          <div class="poster p1">
+            <a href="https://www.royalroad.com/home" class="button special">View Site</a>
+          </div>
+        </div>
+        <div class="box two">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <H1>Web Fiction Guide</H1>
+          <div class="poster p2">          
+            <a href="http://webfictionguide.com/about/" class="button special">View Site</a>
+          </div>
+        </div>
+        
+        <div class="box three">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>Wattpad</h1>
+          <div class="poster p3">
+            <a href="https://www.wattpad.com/" class="button special">View Site</a>
+          </div>
+        </div>
+        
+        <div class="box four">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>Gravity Tales</h1>
+          <div class="poster p4">
+            <a href="http://gravitytales.com/" class="button special">View Site</a>
+          </div>
+        </div>
+        
+        <div class="box five">
+            <div class="date">
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </div>
+            <h1>Wuxia World</h1>
+            <div class="poster p4">
+                <a href="https://www.wuxiaworld.com/" class="button special">View Site</a>
+            </div>
+        </div>
+
+        <div class="box six">
+            <div class="date">
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </div>
+            <h1>Web Novel</h1>
+            <div class="poster p4">
+                <a href="https://www.webnovel.com/" class="button special">View Site</a>
+            </div>
+        </div>
+      </div>        
+    </section>    			      
+{% endblock content %}
+

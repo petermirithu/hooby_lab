@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+  {{block.super}}    
+  <link href="{% static 'css/vlogs.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+
+{% block content %}
+  
+		<!-- Banner -->
+    <section class="banner full">          
+      <article>
+        <img src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+            <h2>Vlog Hub</h2>
+          </header>
+        </div>
+      </article>
+    </section>
+
+  <!-- Two -->
+    <section id="two" class="wrapper style3">
+      <div class="inner">
+        <header class="align-center">
+          <p>Daily vloggers are people who post videos on a daily basis, informing their audience of their whereabouts and activities throughout the day.</p>
+          <h2>Checkout a few of the Vlogs below.</h2>
+        </header>
+      </div>
+    </section>    
+
+    <section>
+      <div class="wrap">
+        <div class="box one">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>The Green Calabash</h1>
+          <div class="poster p1">
+            <a href="https://www.youtube.com/channel/UCE6FlFVPa2HmLNpMgpUhWzg" class="button special">View on Youtube</a>
+          </div>
+        </div>
+        <div class="box two">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <H1>James Charles</H1>
+          <div class="poster p2">          
+            <a href="https://www.youtube.com/channel/UCucot-Zp428OwkyRm2I7v2Q" class="button special">View on Youtube</a>
+          </div>
+        </div>
+        
+        <div class="box three">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>Wabosha Maxine</h1>
+          <div class="poster p3">
+            <a href="https://www.youtube.com/channel/UC5WVOSvL9bc6kwCMXXeFLLw" class="button special">View on Youtube</a>
+          </div>
+        </div>
+        
+        <div class="box four">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>The ACE Family</h1>
+          <div class="poster p4">
+            <a href="https://www.youtube.com/channel/UCWwWOFsW68TqXE-HZLC3WIA" class="button special">View on Youtube</a>
+          </div>
+        </div>
+        
+        <div class="box five">
+            <div class="date">
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </div>
+            <h1>Lucas and Marcus</h1>
+            <div class="poster p4">
+                <a href="https://www.youtube.com/user/TwiNboTzVids" class="button special">View on Youtube</a>
+            </div>
+        </div>
+
+        <div class="box six">
+            <div class="date">
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </div>
+            <h1>Millennium Dance Complex Los Angeles</h1>
+            <div class="poster p4">
+                <a href="https://www.youtube.com/user/DanceMillennium" class="button special">View on Youtube</a>
+            </div>
+        </div>
+      </div>        
+    </section>    			      
+{% endblock content %}
+
