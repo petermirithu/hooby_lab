@@ -1,52 +1,190 @@
-{% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
 
-{% block styles %}
-  {{block.super}}  
-  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">  
-  <link href={% static 'css/home.css' %} rel="stylesheet">
-{% endblock styles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hielo by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />		
+		<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="{% url 'home' %}">Hobby <span>Lab</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section class="banner full">
+				<article>
+					<img src="https://images.unsplash.com/photo-1557860855-159a8c0d18f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" alt="" />
+					<div class="inner">
+						<header>
+							<p>“Persistence. Perfection. Patience. Power. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p>
+							<p><small>Welcome to</small></p>
+							<h2>HOBBY LAB</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="https://images.unsplash.com/photo-1581591546084-fa0c13b08d02?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="" />
+					<div class="inner">
+						<header>
+							<p>Get to play interactive games with gamers from all around the world.</p>
+							<h2>Game Hub</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="https://images.unsplash.com/photo-1566478989151-541ffa519573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+					<div class="inner">
+						<header>
+							<p>“If music be the food of love, play on.” – William Shakespeare</p>
+							<h2>Music Hub</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+					<div class="inner">
+						<header>
+							<p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
+							<h2>Read Hub</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+					<div class="inner">
+						<header>
+							<p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+							<h2>Vlog Hub</h2>
+						</header>
+					</div>
+				</article>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>maecenas sapien feugiat ex purus</p>
+										<h2>Lorem ipsum dolor</h2>
+									</header>
+									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="images/pic03.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>mattis elementum sapien pretium tellus</p>
+										<h2>Vestibulum sit amet</h2>
+									</header>
+									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper style2">
+				<div class="inner">
+					<header class="align-center">
+						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+					<div class="gallery">
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic01.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic02.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic03.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic04.jpg" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
 
-{% block content %}
-<div class="home_cont">
-  <div class="content_home">    
-    <p>Hobby Lab</p>    
-    <span style="color:red;" class="message" id="js-whoops"></span> <span style="color:green;" class="message" id="js-appears"></span> <span style="color:gold;" class="message" id="js-error"></span> <span class="message" id="js-apology"></span>
-    <div><span class="hidden" id="js-hidden">Message Here</span></div>    
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Game lovers</h5>  
-      <div class="game_stuff">        
-        <img src="https://cdn.dribbble.com/users/994678/screenshots/3447660/ps-symbols.gif" width='30%' height="30%">
-        <a href="/home/game/" class="btn btn-danger">Tik Tak Toe</a>        
-      </div>
-    </div>
-    <div class="col-md-6">    
-      <h5>Music lovers</h5>
-      <a href="/search/music/">
-        <div class="music_stuff">        
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://service-excellence-expertise.com/nl/events/see2018/wp-content/uploads/sites/6/2018/07/seelogo-1-1.png"  style="margin-top:20px"width='80%' height="80%">
-            </div>
-            <div class="col-md-4">
-              <img src="https://thumbs.gfycat.com/MetallicGrizzledBarasinga-size_restricted.gif"  style="margin-top:20px"width='60%' height="60%">
-            </div>
-            <div class="col-md-4">
-              <img src="https://media1.tenor.com/images/93ad66075165597a05c16b4b6957dfea/tenor.gif?itemid=4715895"  style="margin-top:20px" width='80%' height="80%">
-            </div>
-          </div>
-        </div>      
-      </a>
-    </div>
-  </div>
-</div>
-<script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>  
-{% endblock content %}
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
 
+		<!-- Scripts -->		
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'js/skel.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
