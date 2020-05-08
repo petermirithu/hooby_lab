@@ -9,30 +9,33 @@
 {% endblock styles %}
 
 {% block content %}
-<div class="container-fluid">
-  <h1 style="padding-top:20px" class="text-center">{{user.username|title}}'s profile</h1>
-  <div class="row">
-    <div class="col-md-5">
-    {% if user.profile.profile_pic %}
-      <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
-    {% else %}
-      <img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
-    {% endif %}
-    </div>
-    <div class="col-md-4">
-      <h6>Email: {{user.email}}</h6>
-      <hr>
-      {% if user.profile.status %}
-        <h6>Status: {{user.profile.status}}</h6>
+<section>
+  <div class="container-fluid">
+    <h1 style="padding-top:20px" class="text-center">{{user.username|title}}'s profile</h1>
+    <div class="row">
+      <div class="col-md-5">
+      {% if user.profile.profile_pic %}
+        <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
       {% else %}
-        <h6>Status: .....</h6>
+        <img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
       {% endif %}
-    </div>
-    <div class="col-md-3">
-      <a href="{% url 'updateprofile' %}" class="btn btn-outline-info">Update profile</a>      
+      </div>
+      <div class="col-md-4">
+        <h6>Email: {{user.email}}</h6>
+        <hr>
+        {% if user.profile.status %}
+          <h6>Status: {{user.profile.status}}</h6>
+        {% else %}
+          <h6>Status: .....</h6>
+        {% endif %}
+      </div>
+      <div class="col-md-3">
+        <a href="{% url 'updateprofile' %}" class="btn btn-outline-info">Update profile</a>      
+      </div>
     </div>
   </div>
-</div>
-<hr>
+  <hr>
+</section>
+
 
 {% endblock content %}

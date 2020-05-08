@@ -1,190 +1,117 @@
+{% extends 'base.html' %}
 {% load static %}
 {% load bootstrap4 %}
 
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Hielo by TEMPLATED</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />		
-		<link href="{% static 'css/main.css' %}" rel="stylesheet">
-	</head>
-	<body>
+{% block styles %}
+  {{block.super}}    
+  <link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock styles %}
 
-		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="logo"><a href="{% url 'home' %}">Hobby <span>Lab</span></a></div>
-				<a href="#menu">Menu</a>
-			</header>
 
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="{% url 'home' %}">Home</a></li>
-					<li><a href="generic.html">Generic</a></li>
-					<li><a href="elements.html">Elements</a></li>
-				</ul>
-			</nav>
-
+{% block content %}
+  
 		<!-- Banner -->
-			<section class="banner full">
-				<article>
-					<img src="https://images.unsplash.com/photo-1557860855-159a8c0d18f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" alt="" />
-					<div class="inner">
-						<header>
-							<p>“Persistence. Perfection. Patience. Power. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p>
-							<p><small>Welcome to</small></p>
-							<h2>HOBBY LAB</h2>
-						</header>
-					</div>
-				</article>
-				<article>
-					<img src="https://images.unsplash.com/photo-1581591546084-fa0c13b08d02?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="" />
-					<div class="inner">
-						<header>
-							<p>Get to play interactive games with gamers from all around the world.</p>
-							<h2>Game Hub</h2>
-						</header>
-					</div>
-				</article>
-				<article>
-					<img src="https://images.unsplash.com/photo-1566478989151-541ffa519573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
-					<div class="inner">
-						<header>
-							<p>“If music be the food of love, play on.” – William Shakespeare</p>
-							<h2>Music Hub</h2>
-						</header>
-					</div>
-				</article>
-				<article>
-					<img src="https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
-					<div class="inner">
-						<header>
-							<p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
-							<h2>Read Hub</h2>
-						</header>
-					</div>
-				</article>
-				<article>
-					<img src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
-					<div class="inner">
-						<header>
-							<p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
-							<h2>Vlog Hub</h2>
-						</header>
-					</div>
-				</article>
-			</section>
+    <section class="banner full">
+      <article>					
+        <img src="https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="" />
+        <div class="inner">
+          <header>
+            <p>“Persistence. Perfection. Patience. Power. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p><br>
+            <span><small>Welcome to</small></span>
+            <a href="{% url 'home' %}"><h2>HOBBY LAB</h2></a>
+          </header>
+        </div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1581591546084-fa0c13b08d02?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="" />
+        <div class="inner">
+          <header>
+            <p>Get to play interactive games with gamers from all around the world.</p>
+            <a href="/home/game/"><h2>Game Hub</h2></a>
+          </header>
+        </div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1566478989151-541ffa519573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>“If music be the food of love, play on.” – William Shakespeare</p>
+            <a href="/search/music/"><h2>Music Hub</h2></a>
+          </header>
+        </div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
+            <a href="{% url 'read' %}"><h2>Read Hub</h2></a>
+          </header>
+        </div>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+            <a href="{% url 'vlogs' %}"><h2>Vlog Hub</h2></a>
+          </header>
+        </div>
+      </article>
+    </section>
 
-		<!-- One -->
-			<section id="one" class="wrapper style2">
-				<div class="inner">
-					<div class="grid-style">
+  <!-- Two -->
+    <section id="two" class="wrapper style3">
+      <div class="inner">
+        <header class="align-center">
+          <p>When you want to get to know someone, ask about their hobbies and interests. Talking about hobbies means you can share details about yourself – and discover shared interests and free-time activities.</p>
+          <h2>Get to Chat with poeple whom you share same hobbies.</h2>
+        </header>
+      </div>
+    </section>
 
-						<div>
-							<div class="box">
-								<div class="image fit">
-									<img src="images/pic02.jpg" alt="" />
-								</div>
-								<div class="content">
-									<header class="align-center">
-										<p>maecenas sapien feugiat ex purus</p>
-										<h2>Lorem ipsum dolor</h2>
-									</header>
-									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
-									<footer class="align-center">
-										<a href="#" class="button alt">Learn More</a>
-									</footer>
-								</div>
-							</div>
-						</div>
+    <section>
+      <div class="wrap">
+        <div class="box one">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>GAME HUB</h1>
+          <div class="poster p1">
+            <a href="/home/game/" class="button special">Tik Tak Toe</a>
+          </div>
+        </div>
+        <div class="box two">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <H1>MUSIC HUB</H1>
+          <div class="poster p2">          
+            <a href="/search/music/" class="button special">Play Music</a>
+          </div>
+        </div>
+        
+        <div class="box three">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>READ HUB</h1>
+          <div class="poster p3">
+            <a href="{% url 'read' %}" class="button special">View Novel Sites</a>
+          </div>
+        </div>
+        
+        <div class="box four">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>VLOGS HUB</h1>
+          <div class="poster p4">
+            <a href="{% url 'vlogs' %}" class="button special">View Vlogs</a>
+          </div>
+        </div>
+        
+      </div>        
+    </section>    			      
+{% endblock content %}
 
-						<div>
-							<div class="box">
-								<div class="image fit">
-									<img src="images/pic03.jpg" alt="" />
-								</div>
-								<div class="content">
-									<header class="align-center">
-										<p>mattis elementum sapien pretium tellus</p>
-										<h2>Vestibulum sit amet</h2>
-									</header>
-									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
-									<footer class="align-center">
-										<a href="#" class="button alt">Learn More</a>
-									</footer>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</section>
-
-		<!-- Two -->
-			<section id="two" class="wrapper style3">
-				<div class="inner">
-					<header class="align-center">
-						<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-						<h2>Morbi maximus justo</h2>
-					</header>
-				</div>
-			</section>
-
-		<!-- Three -->
-			<section id="three" class="wrapper style2">
-				<div class="inner">
-					<header class="align-center">
-						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
-						<h2>Morbi maximus justo</h2>
-					</header>
-					<div class="gallery">
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="images/pic01.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="images/pic02.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="images/pic03.jpg" alt="" /></a>
-							</div>
-						</div>
-						<div>
-							<div class="image fit">
-								<a href="#"><img src="images/pic04.jpg" alt="" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="container">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
-				<div class="copyright">
-					&copy; Untitled. All rights reserved.
-				</div>
-			</footer>
-
-		<!-- Scripts -->		
-			<script src="{% static 'js/jquery.min.js' %}"></script>
-			<script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
-			<script src="{% static 'js/skel.min.js' %}"></script>
-			<script src="{% static 'js/util.js' %}"></script>
-			<script src="{% static 'js/main.js' %}"></script>
-
-	</body>
-</html>
