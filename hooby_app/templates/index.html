@@ -16,8 +16,8 @@
         <img src="https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="" />
         <div class="inner">
           <header>
-            <p>“Persistence. Perfection. Patience. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p><br>            
-            <a href="{% url 'home' %}"><h2>HOBBY LAB</h2></a>
+            <p>“Persistence. Perfection. Patience. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p>            
+            <a href="{% url 'home' %}"><h2>Hobby <span style="font-size: 85%;color: #ce93d8;">Lab</span></h2></a>
           </header>
         </div>
         <h1> &#9660;</h1>
@@ -112,9 +112,65 @@
           <div class="poster p4">
             <a href="{% url 'vlogs' %}" class="button special">View Vlogs</a>
           </div>
+        </div>        
+      </div>            
+    </section>
+    
+    <div class="caros">
+
+      <div class="col-sm-7 mx-auto">
+        <header class="section-header text-center">
+          <span class="h1 d-block">
+            <span>❝</span>
+          </span>
+          <h2>Coming Soon</h2>
+        </header>
+      </div>
+      
+      <div id="flex-container" class="testimonials">
+        <div id="left-zone">
+          <ul class="list">
+            <li class="item">
+              <input type="radio" id="radio_testimonial-1" name="basic_carousel" checked="checked" />
+              <label class="label_testimonial-1" for="radio_testimonial-1">Fifa 20 Game</label>
+              <div class="content-test content_testimonial-1">   
+                <h1>Fifa 20 Game</h1>                            
+                <img src="https://www.joymmo.com/img/editor/images/201904/30084412895.jpg" width="80%">
+              </div>
+            </li>
+            <li class="item">
+              <input type="radio" id="radio_testimonial-2" name="basic_carousel" />
+              <label class="label_testimonial-2" for="radio_testimonial-2">Movie Hub</label>
+              <div class="content-test content_testimonial-2">                                
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1225&q=80" width="80%">           
+                <br>
+              </div>
+            </li>
+            <li class="item">
+              <input type="radio" id="radio_testimonial-3" name="basic_carousel" />
+              <label class="label_testimonial-3" for="radio_testimonial-3">Photoshoot Hub</label>
+              <div class="content-test content_testimonial-3">                          
+                <h1>Photoshoot Hub</h1>
+                <img src="https://images.unsplash.com/photo-1579708721570-30f7be2b08c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1748&q=80" width="80%" alt="">
+              </div>
+            </li>
+            <li class="item">
+              <input type="radio" id="radio_testimonial-4" name="basic_carousel" />
+              <label class="label_testimonial-4" for="radio_testimonial-4">Blog Hub</label>
+              <div class="content-test content_testimonial-4">                
+                <h1>Blog Hub</h1>
+                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" width="80%" alt="">
+                <br>
+              </div>
+            </li>
+          </ul>
         </div>
-        
-      </div>        
-    </section>    			      
-{% endblock content %}
+        <div id="right-zone"></div>
+      </div>
+      
+    </div>
+
+    {% endblock content %}
+
+    <script src="{% static 'js/javascript.js' %}"></script>        
 
