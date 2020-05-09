@@ -9,56 +9,56 @@
 {% endblock styles %}
   
 {% block content %}
-  <div class="music_home">    
-    <h1>Music Lab</h1>
-    <p>Welcome</p>            
-    <div class="row">
-      <div class="col-md-6">
-      <h3>Music Chat Room "LIVE"</h3>
-      <a style="margin-top:1%" class="button" href="/start/chat/Music Hub Chat/">Join room</a>            
+  <section class="banner full">
+    <article>
+      <img src="https://images.unsplash.com/photo-1566478989151-541ffa519573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+      <div class="inner">
+        <header>
+          <p>“If music be the food of love, play on.” – William Shakespeare</p>
+          <a href="/search/music/"><h2>Music Hub</h2></a>
+          <a style="margin-top:1%" class="button special small" href="/start/chat/Music Hub Chat/">Join Chat Room</a>                            
+        </header>
       </div>      
-      <div class="col-md-6">
-        <h3>Search Music</h3>
-        <form style="margin-top:1%" action="{% url 'music' %}" method='post' enctype="multipart/form-data">
+    </article>
+  </section>
+
+  <section id="One" class="wrapper style3">
+    <div class="inner">
+      <header class="align-center">
+        <p>Check out the songs below. Click on a title of a song to comment.</p>
+        <h2>{{title|title}}'s Songs</h2>
+        <form class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2" action="{% url 'music' %}" method='post' enctype="multipart/form-data">
           {% csrf_token %}    
-          <input type="text" name="search_term" placeholder="Search Music">          
-          <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Submit">
-          </div>
-        </form>      
-      </div>
+          <i type="submit" style="color: #ce93d8;" class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" name="search_term" type="text" placeholder="Search Music"
+            aria-label="Search">
+        </form>        
+      </header>
     </div>
-  </div>
-  <div class="container">
-    <h2 class="text-center">{{title|title}}</h2>
-    <div class="row" style="background-image: linear-gradient(to bottom, #ffb18f, #ffbbb4, #ffc9d4, #ffdaec, #fbebfa, #fbecfa, #fbeefb, #fbeffb, #ffe1f0, #ffd3dc, #ffc8c2, #ffbfa4);">
-      <div class="card-columns">
-        {% for music in musics %}    
-          <div style="padding:10px"class="card">
-            <div class="row">
-              <div class="col-md-6">
-                <a  href="/music/{{music.id}}">              
-                  <h6 >{{music.title}}</h6> 
-                  <p><small>By: {{music.artist.name}}</small></p>
-                </a>
-              </div>
-              <div class="col-md-6">
-                <img src={{music.album.cover_big}} style="float:right;border-radius:10px 0px 10px 0px"width="100%" height="100%">          
-              </div>
-            <hr>
-            </div>
-            <a style="color:green" href="{{music.link}}">View in the site</a>                 
-            <div>            
-              <audio controls>              
-                <source src="{{music.preview}}" type="audio/mp3">
+  </section>
+
+  <section>
+    <div class="wrap">
+      {% for music in musics %}    
+      
+      <div style="background: url('{{music.album.cover_big}}');background-repeat: no-repeat;background-size: cover;background-position: center;" class="box one">                
+        <div class="date">
+          <h5>By: {{music.artist.name}}</h6>
+          </div>        
+          <h1><a href="/music/{{music.id}}/">{{music.title}}</a></h1>          
+          <div class="audio">
+            <audio controls>              
+              <source src="{{music.preview}}" type="audio/mp3">
                 Your browser does not support the audio element.
               </audio>
-            </div>          
-          </div>
-        {% endfor %}
-      </div>
+            </div>       
+            <div class="poster p1">                                   
+              <a href="{{music.link}}" class="button special">View Site</a>
+          </div>                 
+        </div>        
+      {% endfor %}
     </div>
-  </div>
+  </section>
 {% endblock content %}
 
 {% block scripts %}
