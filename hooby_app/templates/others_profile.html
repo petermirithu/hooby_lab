@@ -9,27 +9,49 @@
 {% endblock styles %}
 
 {% block content %}
-<div class="container-fluid">
-  <h1 style="padding-top:20px"class="text-center">{{user_x.username|title}}'s profile</h1>
-  <div class="row">
-    <div class="col-md-6">
-    {% if user_x.profile.profile_pic %}
-      <img src="{{user_x.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
-    {% else %}
-      <img src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
-    {% endif %}
+<section>
+  <div class="subpage">		
+    <!-- One -->
+      <section id="One" class="wrapper style3">
+        <div class="inner">
+          <header class="align-center">
+            <p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+            <h2>Profile</h2>
+          </header>
+        </div>
+      </section>
+    <!-- Two -->
+      <section id="two" class="wrapper style2">
+        <div class="inner">
+          <div class="box">
+            <div class="content">
+              <header class="align-center">
+                <p>Here is information about you.</p>
+                <h2>{{user_x.username|title}}'s profile</h2>
+              </header>              
+              <div class="row">
+                <div class="col-md-6">
+                  {% if user_x.profile.profile_pic %}
+                  <img src="{{user_x.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
+                  {% else %}
+                  <img src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
+                  {% endif %}
+                </div>
+                <div class="col-md-6">
+                  <h6>Email: {{user_x.email}}</h6>
+                  <hr>
+                  {% if user_x.profile.status %}
+                  <h6>Status: {{user_x.profile.status}}</h6>
+                  {% else %}
+                  <h6>Status: .....</h6>
+                  {% endif %}
+                </div>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="col-md-6">
-      <h6>Email: {{user_x.email}}</h6>
-      <hr>
-      {% if user_x.profile.status %}
-        <h6>Status: {{user_x.profile.status}}</h6>
-      {% else %}
-        <h6>Status: .....</h6>
-      {% endif %}
-    </div>    
-  </div>
-</div>
-<hr>
+</section>
 
 {% endblock content %}

@@ -3,52 +3,76 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <div class="container-fluid">
-    <div id="app">
-      <div class="container-fluid clearfix mb-3 shadow">
-        <img class="float-left my-3" style="border-radius:10px 10px 10px 10px" src="https://i.ytimg.com/vi/WTDQSS16RIU/maxresdefault.jpg" height="100px" width="100px"
-        />
-        <div class="float-right w-25 py-3">
-          <img class="my-3 mx-3 rounded-circle border" src="https://cdn.wallpapersafari.com/72/32/DA62TL.jpg"
-            height="62px" width="62px" />
-          <p class="d-inline">{% verbatim %} {{ username }} {% endverbatim %}</p>
-        </div>        
-      </div>
-      <div class="row mx-5" style="height: 50vh">
-        <div class="col-8 h-50 align-self-center">
-          <div class="row border rounded invisible h-50 w-75 m-auto" style="font-size: 3.6rem" ref="gameboard" @click="playerAction">
-            <div class="h-100 pr-2 col border border-dark" data-id="1" ref="1"></div>
-            <div class="col pr-2 border border-dark" data-id="2" ref="2"></div>
-            <div class="col pr-2 border border-dark" data-id="3" ref="3"></div>
-            <div class="w-100"></div>
-            <div class="h-100 pr-2 col border border-dark" data-id="4" ref="4"></div>
-            <div class="col pr-2 border border-dark" data-id="5" ref="5"></div>
-            <div class="col pr-2 border border-dark" data-id="6" ref="6"></div>
-            <div class="w-100"></div>
-            <div class="h-100 pr-2 col border border-dark" data-id="7" ref="7"></div>
-            <div class="col pr-2 border border-dark" data-id="8" ref="8"></div>
-            <div class="col pr-2 border border-dark" data-id="9" ref="9"></div>
-          </div>
-        </div>
-        <div class="col-4 pl-3">
-          <div class="row h-100">
-            <div class="col border h-75 text-center" style="background-color:lightgreen;">
-              <p class="my-3">{% verbatim %} {{ players }} {% endverbatim %} online player(s) </p>
-              <hr>
-              <h5>Members</h5>
-              <li class="m-auto py-3 text-dark" style="cursor: pointer;" v-for="member in connectedPlayers" @click="choosePlayer">
-                {% verbatim %} {{ member }} {% endverbatim %}
-              </li>
+  <div class="subpage">		
+	<!-- One -->
+		<section id="One" class="wrapper style3">
+			<div class="inner">
+				<header class="align-center">
+					<p>Get to play interactive games with gamers from all around the world.</p>
+					<h2>TIC-TAC-TOE</h2>
+				</header>
+			</div>
+		</section>
+	<!-- Two -->
+		<section id="two" class="wrapper style2">
+			<div class="inner">
+				<div class="box">
+					<div class="content">						            
+            <div class="container-fluid">
+              <div id="app">
+                <div class="container-fluid clearfix mb-3 shadow">
+                  <img class="float-left my-3" style="border-radius:10px 10px 10px 10px" src="https://i.ytimg.com/vi/WTDQSS16RIU/maxresdefault.jpg" height="100px" width="100px"
+                  />
+                  <div class="float-right w-25 py-3">
+                    <img class="my-3 mx-3 rounded-circle border" src="https://cdn.wallpapersafari.com/72/32/DA62TL.jpg"
+                      height="62px" width="62px" />
+                    <p class="d-inline">{% verbatim %} {{ username }} {% endverbatim %}</p>
+                  </div>        
+                </div>
+                <div class="row mx-5" style="height: 50vh">
+                  <div class="col-8 h-50 align-self-center">
+                    <div class="row border rounded invisible h-50 w-75 m-auto" style="font-size: 3.6rem" ref="gameboard" @click="playerAction">
+                      <div class="h-100 pr-2 col border border-dark" data-id="1" ref="1"></div>
+                      <div class="col pr-2 border border-dark" data-id="2" ref="2"></div>
+                      <div class="col pr-2 border border-dark" data-id="3" ref="3"></div>
+                      <div class="w-100"></div>
+                      <div class="h-100 pr-2 col border border-dark" data-id="4" ref="4"></div>
+                      <div class="col pr-2 border border-dark" data-id="5" ref="5"></div>
+                      <div class="col pr-2 border border-dark" data-id="6" ref="6"></div>
+                      <div class="w-100"></div>
+                      <div class="h-100 pr-2 col border border-dark" data-id="7" ref="7"></div>
+                      <div class="col pr-2 border border-dark" data-id="8" ref="8"></div>
+                      <div class="col pr-2 border border-dark" data-id="9" ref="9"></div>
+                    </div>
+                  </div>
+                  <div class="col-4 pl-3">
+                    <div class="row h-100">
+                      <div class="col border h-75 text-center" style="background-color:lightgreen;">
+                        <p class="my-3">{% verbatim %} {{ players }} {% endverbatim %} online player(s) </p>
+                        <hr>
+                        <h5>Members</h5>
+                        <li class="m-auto py-3 text-dark" style="cursor: pointer;" v-for="member in connectedPlayers" @click="choosePlayer">
+                          {% verbatim %} {{ member }} {% endverbatim %}
+                        </li>
+                      </div>
+                      <div class="w-100"></div>
+                      <div class="col text-center py-3 border h-25" style="background-color: gray; font-size: 1em; font-weight: bold">
+                        {% verbatim %} {{ status }} {% endverbatim %}
+                      </div>            
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="w-100"></div>
-            <div class="col text-center py-3 border h-25" style="background-color: gray; font-size: 1em; font-weight: bold">
-              {% verbatim %} {{ status }} {% endverbatim %}
-            </div>            
-          </div>
-        </div>
-      </div>
-    </div>
+            
+
+					</div>
+				</div>
+			</div>
+		</section>
   </div>
+  
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>        
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
