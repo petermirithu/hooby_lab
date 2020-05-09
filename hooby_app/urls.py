@@ -19,6 +19,8 @@ urlpatterns = [
     # chat area
     path('start/chat/<str:slug>/',views.start_chat,name='start_chat'),
     url(r'token$', views.token, name="token"),        
+    url(r'^vlogs$',views.vlogs,name="vlogs"),
+    url(r'^read$',views.read,name="read"),
 
 
 ]

@@ -3,32 +3,59 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <div class="container">
-    <h1 style="margin-top:20px" class="h3 mb-3 font-weight-normal text-center">TIC-TAC-TOE</h1>
-    <hr>
-    <div class="row">
-      <div class="col-md-6">        
-        <img class="mb-4" style="border-radius:10px 10px 10px 10px" src="https://media0.giphy.com/media/YrNE3JZ8rI7TP7Hw0d/giphy.webp?cid=790b7611eff6304e2116071a2e00b27d0dd10f78f5ba8ede&rid=giphy.webp" alt="" width="250px" height="250px">        
-        <h1>Game Chat Room<h1>
-        <a href="/start/chat/Game Chat/" class="btn btn-block btn-danger">Join Room</a>
-      </div>
-      <div class="col-md-6">
-        <div id="app">
-          <form class="form-signin">                                  
-            <p>PUT IN YOUR DETAILS TO PLAY</p>
-            {% csrf_token %}
-            <div class="form-label-group">
-                <label for="inputUsername">Stage name</label>
-                <input type="name" id="inputUsername" ref="username" class="form-control" placeholder="Enter a stage name." required="" autofocus="">
-            </div>            
-            <hr>
-            <button class="btn btn-lg btn-outline-primary btn-block" type="submit" @click.prevent="login">Connect</button>
-            <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
-          </form>
-        </div>
-      </div>      
+<section class="banner full">
+
+  <article>
+    <img src="https://images.unsplash.com/photo-1581591546084-fa0c13b08d02?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="" />
+    <div class="inner">
+      <header>
+        <p>Get to play interactive games with gamers from all around the world.</p>
+        <a href="/home/game/"><h2>Game Hub</h2></a>
+      </header>
     </div>
-  </div>    
+  </article>
+</section>
+  
+  <div class="subpage">			
+		<section id="two" class="wrapper style2">
+			<div class="inner">
+				<div class="box">
+					<div class="content">
+						<header class="align-center">
+							<p>Get to play interactive games with gamers from all around the world.</p>
+							<h2>TIC-TAC-TOE</h2>
+						</header>
+            
+            <div class="row">
+              <div class="col-md-6">        
+                <img class="mb-4" style="border-radius:10px 10px 10px 10px" src="https://media0.giphy.com/media/YrNE3JZ8rI7TP7Hw0d/giphy.webp?cid=790b7611eff6304e2116071a2e00b27d0dd10f78f5ba8ede&rid=giphy.webp" alt="" width="250px" height="250px">        
+                <h1>Game Chat Room<h1>                  
+                <a href="/start/chat/Game Hub Chat/" class="button  special btn-block">Join Room</a>
+              </div>
+              <div class="col-md-6">
+                <div id="app">
+                  <form class="form-signin">                                  
+                    <p>PUT IN YOUR DETAILS TO PLAY</p>
+                    {% csrf_token %}
+                    <div class="form-label-group">
+                        <label for="inputUsername">Stage name</label>
+                        <input type="name" id="inputUsername" ref="username" class="form-control" placeholder="Enter a stage name." required="" autofocus="">
+                    </div>            
+                    <hr>
+                    <button class="btn btn-lg btn-outline-primary btn-block" type="submit" @click.prevent="login">Connect</button>
+                    <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
+                  </form>
+                </div>
+              </div>      
+            </div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+  </div>
+  
+  
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
     var app = new Vue({

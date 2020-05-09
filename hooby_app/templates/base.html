@@ -4,53 +4,82 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />		
   {% if title %}
   <title>{{title}}</title>
   {% else %}
-  <title>Hobby_Lab</title>
+  <title>Hobby Lab</title>
   {% endif %}
 
   {% block styles %}
     {% bootstrap_css %}    
-    <link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
+    <link rel="shortcut icon" href="https://www.import.io/wp-content/uploads/2018/04/Rocket-icon-blue-1.png">
     <link href="https://fonts.googleapis.com/css?family=Inria+Serif&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
   {% endblock styles %}
   </head>
   <body>
-  {% include 'navbar.html' %}
-  <div id="wrapper-load">
-    <span><img src="https://i.pinimg.com/originals/8a/83/c8/8a83c8978f1b376321fde613d460e88d.gif" id="loader"></span>        
-  </div>
-  
+    		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="{% url 'home' %}"><img style="width:40px"src="https://www.import.io/wp-content/uploads/2018/04/Rocket-icon-blue-1.png">Hobby <span>Lab</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'game_home' %}">Game Hub</a></li>      
+          <li><a href="{% url 'music' %}">Music Hub</a></li>                        
+          <li><a href="{% url 'read' %}">Read Hub</a></li>      
+          <li><a href="{% url 'vlogs' %}">Vlogs Hub</a></li>                        
+          {% if user.is_authenticated %}                       
+            {% if user.profile.profile_pic %}
+              <img class="rounded-circle chat_nav"src="{{user.profile.profile_pic.cdn_url}}" width="40px" height="40px"alt="Profile photo">                              
+            {% else %}
+              <img class="rounded-circle chat_nav"src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" style="background-color:lightblue" width="40px" height="40px" alt="Profile photo">
+            {% endif %}    
+            <li><a href="{% url 'profile' %}">Profile</a></li>      
+            <li><a href="{% url 'logout' %}">Sign Out</a></li>                        
+          {% else %}
+          <li class="nav-item">
+            <a href="/accounts/login/">Sign In</a>
+          </li>
+          {% endif %}					          
+				</ul>
+      </nav>      
+
+      
   {% block content %}
 
-  {% endblock content %}
-  <hr>  
-  <footer class="page-footer font-small special-color-dark pt-4" style="color:azure;background-image: linear-gradient(to bottom, #000000, #030102, #050303, #080405, #0b0606, #110d0d, #151313, #191717, #211f1f, #282728, #303030, #393939);">  
-    <div class="container">  
-      <a><img src="http://pngimg.com/uploads/twitter/twitter_PNG32.png" class="rounded-circle" width="40px" height="40px"><a href="https://www.instagram.com/?hl=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a><img src="https://clipartart.com/images/clipart-logo-instagram-1.jpg" class="rounded-circle" width="40px" height="40px"><a href="https://twitter.com/login?lang=en">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a><img src="https://androidapksfree.com/wp-content/uploads/2014/11/Facebook-fb-APK.png" class="rounded-circle" width="40px" height="40px"><a href="https://www.facebook.com/">@ hobby_lab</a></a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxo4MPrnqf0zSnoGUBpKXw_ax_GuX8zjOXCVUcL_SE-RfQKcDB&s" class="rounded-circle" width="40px" height="40px"> 0790476167</a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" class="rounded-circle" width="40px" height="40px"><a href="mailto: pyra_m.k@yahoo.com">pyra_m.k@yahoo.com</a></a>            
-    </div>     
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="/"> Hobby_Lab.com</a>
+  {% endblock content %}  
+  <footer id="footer">
+    <div class="container">
+      <ul class="icons">
+        <a href="https://www.instagram.com/?hl=en"><img src="http://pngimg.com/uploads/twitter/twitter_PNG32.png" class="rounded-circle" width="40px" height="40px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://twitter.com/login?lang=en"><img src="https://clipartart.com/images/clipart-logo-instagram-1.jpg" class="rounded-circle" width="40px" height="40px"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://www.facebook.com/"><img src="https://androidapksfree.com/wp-content/uploads/2014/11/Facebook-fb-APK.png" class="rounded-circle" width="40px" height="40px"></a>&nbsp;&nbsp;&nbsp;&nbsp;        
+        <a href="mailto: peter_mirithu@yahoo.com"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" class="rounded-circle" width="40px" height="40px"></a>
+      </ul>
     </div>
-    </footer>
+    <div class="copyright">
+      &copy; 2020. All rights reserved.
+    </div>
+  </footer>
+
   </body>
   
   {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Scripts -->		
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
     <script src="https://kit.fontawesome.com/8311960bd4.js" crossorigin="anonymous"></script>    
-    {% bootstrap_javascript %}        
-    <script>
-      $(window).load(function() {        
-        $("#loader").hide();
-      });
-  </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+    <script src="{% static 'js/skel.min.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>    
+    {% bootstrap_javascript %}            
   {% endblock scripts %}
 </html>

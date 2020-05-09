@@ -175,4 +175,13 @@ def token(request):
     }
 
     return JsonResponse(response)
-    
+
+@login_required()
+def vlogs(request):
+  title="Vlog Hub"
+  return render(request, 'vlogs.html',{"title":title})
+
+@login_required()
+def read(request):
+  title="Read Hub"
+  return render(request, 'read.html',{"title":title})

@@ -10,29 +10,45 @@
 {% endblock styles %}
 
 {% block content %}
-  <div class="container" style="padding-bottom:200px;">    
-    <div class="row">
-      <div class="col-md-6" style="overflow:scroll; height:500px;width:250px">
-        <h1 style="margin-top:20px" class="title">{{room.name}} Room "LIVE".</h1>
-        <p class="subtitle">
-          {{room.description}}
-        </p>
-        <div id="messages"></div>          
-      </div>
-      <div class="col-md-6" style="background-image:url('https://images.unsplash.com/photo-1552068751-34cb5cf055b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60');padding-bottom:15%">                          
-          <form id="message-form" style="padding-top:10%">
-            <div class="field">
-              <h4><label class="label"><b>Message</b></label></h4>
-              <div class="control">
-                <textarea class="textarea" id="message-input"placeholder="Your message here" rows="3" autofocus></textarea>
+  <div class="subpage">		
+	<!-- One -->
+		<section id="One" style="background-image: url('https://images.unsplash.com/photo-1511367734837-f2956f0d8020?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1388&q=80');" class="wrapper style3">
+			<div class="inner">
+				<header class="align-center">
+					<p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
+					<h2>{{room.name}} Room "LIVE"</h2>
+				</header>
+			</div>
+		</section>
+	<!-- Two -->
+		<section id="two" class="wrapper style2">
+			<div class="inner">
+				<div class="box">
+					<div class="content">
+						<header class="align-center">
+							<p>{{room.description}}</p>							
+						</header>
+            <div class="row">
+              <div class="col-md-6" style="overflow:scroll; height:500px;width:250px">                
+                <div id="messages"></div>                          
               </div>
-            </div>
-            <button type="submit" class="button">Send</button>
-          </form>          
-        </div>
-      </div>
-    </div>    
-  </div>  
+              <div class="col-md-6" style="background-image:url('https://images.unsplash.com/photo-1516972238977-89271fb2bab8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');padding-bottom:15%">                          
+                <form id="message-form" style="padding-top:10%">
+                  <div class="field">
+                    <h4><label class="label"><b>Message</b></label></h4>
+                    <div class="control">
+                      <textarea class="textarea" id="message-input"placeholder="Your message here" rows="3" autofocus></textarea>
+                    </div>
+                  </div>
+                  <button type="submit" class="button">Send</button>
+                </form>          
+              </div>
+            </div>          
+					</div>
+				</div>
+			</div>
+		</section>
+  </div>              
 {% endblock content %}
 {% block scripts %}    
   {{block.super}}

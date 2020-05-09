@@ -3,50 +3,118 @@
 {% load bootstrap4 %}
 
 {% block styles %}
-  {{block.super}}  
-  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">  
-  <link href={% static 'css/home.css' %} rel="stylesheet">
+  {{block.super}}    
+  <link href="{% static 'css/home.css' %}" rel="stylesheet">
 {% endblock styles %}
 
 
 {% block content %}
-<div class="home_cont">
-  <div class="content_home">    
-    <p>Hobby Lab</p>    
-    <span style="color:red;" class="message" id="js-whoops"></span> <span style="color:green;" class="message" id="js-appears"></span> <span style="color:gold;" class="message" id="js-error"></span> <span class="message" id="js-apology"></span>
-    <div><span class="hidden" id="js-hidden">Message Here</span></div>    
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Game lovers</h5>  
-      <div class="game_stuff">        
-        <img src="https://cdn.dribbble.com/users/994678/screenshots/3447660/ps-symbols.gif" width='30%' height="30%">
-        <a href="/home/game/" class="btn btn-danger">Tik Tak Toe</a>        
+  
+		<!-- Banner -->
+    <section class="banner full">
+      <article>					
+        <img src="https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="" />
+        <div class="inner">
+          <header>
+            <p>“Persistence. Perfection. Patience. Prioritize your passion. It keeps you sane.” ― Criss Jami, Killosophy.</p><br>            
+            <a href="{% url 'home' %}"><h2>HOBBY LAB</h2></a>
+          </header>
+        </div>
+        <h1> &#9660;</h1>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1581591546084-fa0c13b08d02?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="" />
+        <div class="inner">
+          <header>
+            <p>Get to play interactive games with gamers from all around the world.</p>
+            <a href="/home/game/"><h2>Game Hub</h2></a>
+          </header>
+        </div>
+        <h1> &#9660;</h1>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1566478989151-541ffa519573?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>“If music be the food of love, play on.” – William Shakespeare</p>
+            <a href="/search/music/"><h2>Music Hub</h2></a>
+          </header>
+        </div>
+        <h1> &#9660;</h1>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1521714161819-15534968fc5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>“Think before you speak. Read before you think.” – Fran Lebowitz</p>
+            <a href="{% url 'read' %}"><h2>Read Hub</h2></a>
+          </header>
+        </div>
+        <h1> &#9660;</h1>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"  alt="" />
+        <div class="inner">
+          <header>
+            <p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+            <a href="{% url 'vlogs' %}"><h2>Vlog Hub</h2></a>
+          </header>
+        </div>
+        <h1> &#9660;</h1>
+      </article>      
+    </section>    
+    <!-- Two -->
+    <section id="two" class="wrapper style3">      
+      <div class="inner">
+        <header class="align-center">
+          <p>When you want to get to know someone, ask about their hobbies and interests. Talking about hobbies means you can share details about yourself – and discover shared interests and free-time activities.</p>
+          <h2>Get to Chat with poeple whom you share same hobbies.</h2>
+        </header>
       </div>
-    </div>
-    <div class="col-md-6">    
-      <h5>Music lovers</h5>
-      <a href="/search/music/">
-        <div class="music_stuff">        
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://service-excellence-expertise.com/nl/events/see2018/wp-content/uploads/sites/6/2018/07/seelogo-1-1.png"  style="margin-top:20px"width='80%' height="80%">
-            </div>
-            <div class="col-md-4">
-              <img src="https://thumbs.gfycat.com/MetallicGrizzledBarasinga-size_restricted.gif"  style="margin-top:20px"width='60%' height="60%">
-            </div>
-            <div class="col-md-4">
-              <img src="https://media1.tenor.com/images/93ad66075165597a05c16b4b6957dfea/tenor.gif?itemid=4715895"  style="margin-top:20px" width='80%' height="80%">
-            </div>
+    </section>
+
+    <section class="subpage">
+      <div class="wrap">
+        <div class="box one">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
           </div>
-        </div>      
-      </a>
-    </div>
-  </div>
-</div>
-<script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>  
+          <h1>GAME HUB</h1>
+          <div class="poster p1">
+            <a href="/home/game/" class="button special">Tik Tak Toe</a>
+          </div>
+        </div>
+        <div class="box two">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <H1>MUSIC HUB</H1>
+          <div class="poster p2">          
+            <a href="/search/music/" class="button special">Play Music</a>
+          </div>
+        </div>
+        
+        <div class="box three">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>READ HUB</h1>
+          <div class="poster p3">
+            <a href="{% url 'read' %}" class="button special">View Novel Sites</a>
+          </div>
+        </div>
+        
+        <div class="box four">
+          <div class="date">
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+          </div>
+          <h1>VLOGS HUB</h1>
+          <div class="poster p4">
+            <a href="{% url 'vlogs' %}" class="button special">View Vlogs</a>
+          </div>
+        </div>
+        
+      </div>        
+    </section>    			      
 {% endblock content %}
 

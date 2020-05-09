@@ -3,60 +3,80 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
+  <div class="subpage">		
+	<!-- One -->
+		<section id="One" style="background-image:url('{{music.album.cover_xl}}')"class="wrapper style3">
+			<div class="inner">
+				<header class="align-center">
+					<p>“If music be the food of love, play on.” – William Shakespeare</p>
+					<h2>{{music.title}}</h2>
+				</header>
+			</div>
+		</section>
+	<!-- Two -->
+		<section id="two" class="wrapper style2">
+			<div class="inner">
+				<div class="box">
+					<div class="content">
+						<header class="align-center">
+							<p>Album: {{music.album.title}}</p>
+							<h2>Artist: {{music.artist.name}}</h2>
+            </header>
+            
+            <div class="row">    
+              <div class="col-md-6">      
+                <img class="rounded-circle" src={{music.artist.picture_big}} width="50%" height="80%">
+                <h4>Artist: {{music.artist.name}}</h4>
+              </div>      
+              <div class="col-md-6" style="padding-top:20px;background: rgba(0,0,0,0.7);-webkit-box-shadow: 0 0 30px rgba(0,0,0,0.7);
+              box-shadow: 0 0 30px rgba(0,0,0,0.7);border-radius: 10px 10px 10px 10px;">                      
+                  <h4><b>Album: {{music.album.title}}</b></h4>
+                  <br>
+                  <h6><b>Track position: {{music.track_position}}</b></h6>
+                  <br>
+                  <h6><b>Rank: {{music.rank}}</b></h6>
+                  <br>
+                  <h6><b>Release Date: {{music.release_date}}</b></h6>
+                  <br>
+                  <h6><b>Duration: {{music.duration}} seconds</b></h6>                      
+              </div>    
+            </div>
 
-<div class="container">
-  <h1 style="font-family: 'Shrikhand', cursive;padding-top:20px">{{music.title}}</h1>  
-  <div class="row">    
-    <div class="col-md-6">      
-      <img class="rounded-circle" src={{music.artist.picture_big}} width="50%" height="80%">
-      <h4>Artist: {{music.artist.name}}</h4>
-    </div>      
-    <div class="col-md-6" style="padding-top:20px;background-image:url('{{music.album.cover_xl}}'); z-index: -1;background-color: hsla(0,0%,100%,0.70);background-blend-mode: overlay;">      
-        <h4><b>Album: {{music.album.title}}</b></h4>
-        <br>
-        <h6><b>Track position: {{music.track_position}}</b></h6>
-        <br>
-        <h6><b>Rank: {{music.rank}}</b></h6>
-        <br>
-        <h6><b>Release Date: {{music.release_date}}</b></h6>
-        <br>
-        <h6><b>Duration: {{music.duration}} seconds</b></h6>      
-    </div>    
+            <h1 style="font-size: 50px;">Reviews</h1>
+            <div class="row">
+              <div class="col-md-4">
+                <form action="{% url 'add_review' %}" method='post' enctype="multipart/form-data">
+                  {% csrf_token %}    
+                  {% bootstrap_form form %}
+                  <input style="visibility:hidden" value="{{music.id}}" type="text" name="music_id">
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-info" value="Post">
+                  </div>
+                </form>  
+              </div>
+              <div class="col-md-8">
+              {% if reviews %}
+                {% for review in reviews %}
+                  <div class="card" style="width:650px">     
+                    {% if review.posted_by.profile.profile_pic %}
+                      <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="{{review.posted_by.profile.profile_pic}}" width="40px" heigth="40px"><b style="color:#ce93d8">{{review.posted_by}}</b></a> {{review.body}}</p>
+                      <p>{{review.posted_on|timesince}}</p>                                                  
+                    {% else %}
+                      <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="40px" heigth="40px"><b style="color:#ce93d8">{{review.posted_by}}</b></a> {{review.body}}</p>
+                      <p>{{review.posted_on|timesince}}</p>    
+                    {% endif %}             
+                  </div>        
+                <hr>
+                {% endfor %}
+              {% else %}
+                <h6>No Reviews for this music.</h6> <h4><i class="fas fa-sad-tear"></i><h4>
+              {% endif %}
+              </div>
+            </div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
   </div>
-  <hr>
-</div>
-<div class="container">
-  <h1 style="font-family: 'Shrikhand', cursive;">Reviews</h1>
-  <div class="row">
-    <div class="col-md-4">
-      <form action="{% url 'add_review' %}" method='post' enctype="multipart/form-data">
-        {% csrf_token %}    
-        {% bootstrap_form form %}
-        <input style="visibility:hidden" value="{{music.id}}" type="text" name="music_id">
-        <div class="form-group">
-          <input type="submit" class="btn btn-info" value="Post">
-        </div>
-      </form>  
-    </div>
-    <div class="col-md-8">
-    {% if reviews %}
-      {% for review in reviews %}
-        <div class="card" style="width:650px">     
-          {% if review.posted_by.profile.profile_pic %}
-            <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="{{review.posted_by.profile.profile_pic}}" width="40px" heigth="40px"><b>{{review.posted_by}}</b></a> {{review.body}}</p>
-            <p>{{review.posted_on|timesince}}</p>                                                  
-          {% else %}
-            <p><a href="/user/profile/{{review.posted_by}}/"><img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="40px" heigth="40px"><b>{{review.posted_by}}</b></a> {{review.body}}</p>
-            <p>{{review.posted_on|timesince}}</p>    
-          {% endif %}             
-        </div>        
-      <hr>
-      {% endfor %}
-    {% else %}
-      <h6>No Reviews for this music.</h6> <h4><i class="fas fa-sad-tear"></i><h4>
-    {% endif %}
-    </div>
-  </div>
-</div>    
 {% endblock content %}

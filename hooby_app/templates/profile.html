@@ -9,30 +9,56 @@
 {% endblock styles %}
 
 {% block content %}
-<div class="container-fluid">
-  <h1 style="padding-top:20px" class="text-center">{{user.username|title}}'s profile</h1>
-  <div class="row">
-    <div class="col-md-5">
-    {% if user.profile.profile_pic %}
-      <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
-    {% else %}
-      <img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
-    {% endif %}
-    </div>
-    <div class="col-md-4">
-      <h6>Email: {{user.email}}</h6>
-      <hr>
-      {% if user.profile.status %}
-        <h6>Status: {{user.profile.status}}</h6>
-      {% else %}
-        <h6>Status: .....</h6>
-      {% endif %}
-    </div>
-    <div class="col-md-3">
-      <a href="{% url 'updateprofile' %}" class="btn btn-outline-info">Update profile</a>      
-    </div>
-  </div>
-</div>
-<hr>
+<section>
+  
+  <div class="subpage">		
+    <!-- One -->
+      <section id="One" style="background-image: url('https://images.unsplash.com/photo-1511367734837-f2956f0d8020?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1388&q=80');" class="wrapper style3">
+        <div class="inner">
+          <header class="align-center">
+            <p>When looking for that post-camp travel inspiration, hands down - it’s all about the vlog.</p>
+            <h2>Profile</h2>
+          </header>
+        </div>
+      </section>
+    <!-- Two -->
+      <section id="two" class="wrapper style2">
+        <div class="inner">
+          <div class="box">
+            <div class="content">
+              <header class="align-center">
+                <p>Here is information about you.</p>
+                <h2>{{user.username|title}}'s profile</h2>
+              </header>
+              
+              <div class="row">
+                <div class="col-md-5">
+                {% if user.profile.profile_pic %}
+                  <img class="rounded-circle" src="{{user.profile.profile_pic}}" width="300px" height="300px" alt="{{user.username}}">                
+                {% else %}
+                  <img class="rounded-circle" src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" width="300px" height="300px" alt="Profile photo">              
+                {% endif %}
+                </div>
+                <div class="col-md-4">
+                  <h6>Email: {{user.email}}</h6>
+                  <hr>
+                  {% if user.profile.status %}
+                    <h6>Status: {{user.profile.status}}</h6>
+                  {% else %}
+                    <h6>Status: .....</h6>
+                  {% endif %}
+                </div>
+                <div class="col-md-3">
+                  <a href="{% url 'updateprofile' %}" class="button">Update profile</a>      
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>    
+</section>
+
 
 {% endblock content %}
