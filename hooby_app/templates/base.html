@@ -1,6 +1,7 @@
 {% load static %}
 {% load bootstrap4 %}
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +38,7 @@
           <li><a href="{% url 'vlogs' %}">Vlogs Hub</a></li>                        
           {% if user.is_authenticated %}                       
             {% if user.profile.profile_pic %}
-              <img class="rounded-circle chat_nav"src="{{user.profile.profile_pic.cdn_url}}" width="40px" height="40px"alt="Profile photo">                              
+              <img class="rounded-circle chat_nav"src="{{user.profile.profile_pic.url}}" width="40px" height="40px"alt="Profile photo">                              
             {% else %}
               <img class="rounded-circle chat_nav"src="https://cdn4.iconfinder.com/data/icons/human-user-business-person-avatars/100/23A-1User-512.png" style="background-color:lightblue" width="40px" height="40px" alt="Profile photo">
             {% endif %}    
@@ -73,7 +74,7 @@
   
   {% block scripts %}
     <!-- Scripts -->		
-    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+    
     <script src="https://kit.fontawesome.com/8311960bd4.js" crossorigin="anonymous"></script>    
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>

@@ -1,10 +1,5 @@
-#loader{
-  top: 0;    
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: 100;
-}
-body{
-  font-family: 'Inria Serif', serif;
+@media screen and (max-width: 800px) {
+  #One .inner{
+    margin-top: 10%;
+  }
 }

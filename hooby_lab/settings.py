@@ -15,6 +15,10 @@ import dj_database_url
 import django_heroku
 from decouple import config,Csv
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODE=config('MODE')
@@ -25,8 +29,7 @@ DEBUG=config('DEBUG',default=False,cast=bool)
 # Application definition
 
 INSTALLED_APPS = [
-    'hooby_app.apps.HoobyAppConfig',
-    'pyuploadcare',
+    'hooby_app.apps.HoobyAppConfig',    
     'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -121,10 +124,12 @@ AUTHENTICATION_BACKENDS=(
 
 SITE_ID = 1
 
-UPLOADCARE = {
-    'pub_key': 'c96c96ba389f71f5a095',
-    'secret': '6301c7f31d9148b826f3',
-}
+cloudinary.config( 
+  cloud_name = "pyra-z", 
+  api_key = "271376794181585", 
+  api_secret = "PGtOn0VpT-ATEElgW5MpXaV6LjI" 
+)
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
