@@ -7,7 +7,7 @@ class profile(models.Model):
   class that defines how a users profile shall look like
   '''
   user=models.OneToOneField(User,on_delete=models.CASCADE)
-  profile_pic=CloudinaryField('image',blank=True,null=True)  
+  profile_pic=CloudinaryField('image',blank=True,null=True,default='')  
   status=models.CharField(max_length=100)
 
   def __str__(self):

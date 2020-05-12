@@ -35,7 +35,7 @@
 
             <div class="card bg-transparent">              
               <div class="card-body">
-                <form action="{% url 'updateprofile' %}" method="post" enctype="mulitpart/form-data">
+                <form action="{% url 'updateprofile' %}" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   {% bootstrap_form user_form %}
                   {% bootstrap_form profile_form %}            
