@@ -125,9 +125,9 @@ AUTHENTICATION_BACKENDS=(
 SITE_ID = 1
 
 cloudinary.config( 
-  cloud_name = "pyra-z", 
-  api_key = "271376794181585", 
-  api_secret = "PGtOn0VpT-ATEElgW5MpXaV6LjI" 
+  cloud_name = config('CLOUD_NAME'), 
+  api_key = config('API_KEY'),
+  api_secret = config('API_SECRET')
 )
 
 # Password validation
