@@ -24,7 +24,7 @@ lazy-object-proxy==1.4.3
 mccabe==0.6.1
 ndg-httpsclient==0.5.1
 oauthlib==3.1.0
-Pillow==6.2.1
+Pillow==8.2.0
 psycopg2==2.8.4
 pusher==2.1.4
 pyasn1==0.4.8
